@@ -143,7 +143,6 @@ public class Users {
             System.out.println("Введите корректное значение");
             return false;
         }
-
     }
 
     public String getTelephone_number() {
