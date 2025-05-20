@@ -41,8 +41,8 @@ public class Test {
                             .addAnnotatedClass(Category.class)
                             .addAnnotatedClass(Order.class)
                             .addAnnotatedClass(Status.class);
-                    SessionFactory factory10001 = configuration10001.buildSessionFactory();
 
+                    SessionFactory factory10001 = configuration10001.buildSessionFactory();
                     Session session10001 = null;
 
                     try {
@@ -58,7 +58,6 @@ public class Test {
                     } finally {
                         session10001.close();
                         factory10001.close();
-
                     }
 
                     Configuration configuration10002 = new Configuration()
@@ -67,7 +66,6 @@ public class Test {
                             .addAnnotatedClass(Category.class)
                             .addAnnotatedClass(Order.class)
                             .addAnnotatedClass(Status.class);
-
 
                     SessionFactory factory10002 = configuration10002.buildSessionFactory();
                     Session session10002 = null;
@@ -142,7 +140,6 @@ public class Test {
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
-
 
                                     SessionFactory factory10003 = configuration10003.buildSessionFactory();
 
@@ -266,7 +263,6 @@ public class Test {
                                                     .addAnnotatedClass(Category.class)
                                                     .addAnnotatedClass(Order.class)
                                                     .addAnnotatedClass(Status.class);
-
 
                                     SessionFactory factory10005 = configuration10005.buildSessionFactory();
 
@@ -395,7 +391,6 @@ public class Test {
                             .addAnnotatedClass(Category.class)
                             .addAnnotatedClass(Order.class)
                             .addAnnotatedClass(Status.class);
-
 
                     SessionFactory factory10006 = configuration10006.buildSessionFactory();
 
@@ -604,7 +599,6 @@ public class Test {
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-
                                     SessionFactory factory10009 = configuration10009.buildSessionFactory();
 
                                     Session session10009 = null;
@@ -790,7 +784,7 @@ public class Test {
                                                         System.out.println("Введите артикул товара (формат ввода: первые 2 символа - заглавные буквы, остальные 4 символа - цифры)");
 
 
-                                                        while (!product.setCode(inputArticul.nextLine()));
+                                                        while (!product.setCode(inputArticul.nextLine())) ;
 
 
                                                         List<Product> productList = session10012.createQuery("from Product").getResultList();
@@ -872,7 +866,6 @@ public class Test {
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-
                                     SessionFactory factory10013 = configuration10013.buildSessionFactory();
 
                                     Session session10013 = null;
@@ -905,7 +898,6 @@ public class Test {
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
-
 
                                     SessionFactory factory10014 = configuration10014.buildSessionFactory();
 
@@ -944,7 +936,6 @@ public class Test {
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
-
 
                                     SessionFactory factory10015 = configuration10015.buildSessionFactory();
 
@@ -1019,7 +1010,6 @@ public class Test {
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
-
 
                                     SessionFactory factory10016 = configuration10016.buildSessionFactory();
 
@@ -1305,7 +1295,6 @@ public class Test {
 
                                     System.out.println("Добавление товара в корзину");
 
-
                                     String tovarname = null;
 
                                     int count = 0;
@@ -1317,7 +1306,13 @@ public class Test {
                                     art = input_id_product.nextLine();
                                     Users user;
 
-                                    Configuration configuration10020 = new Configuration().addAnnotatedClass(Product.class).addAnnotatedClass(Category.class).addAnnotatedClass(Users.class).addAnnotatedClass(Order.class);
+                                    Configuration configuration10020 = new Configuration()
+                                            .addAnnotatedClass(Product.class)
+                                            .addAnnotatedClass(Category.class)
+                                            .addAnnotatedClass(Users.class)
+                                            .addAnnotatedClass(Order.class)
+                                            .addAnnotatedClass(Status.class);
+
                                     SessionFactory factory10020 = configuration10020.buildSessionFactory();
                                     Session session10020 = null;
                                     try {
@@ -1371,7 +1366,13 @@ public class Test {
                                     Users user1;
 
 
-                                    Configuration configuration10021 = new Configuration().addAnnotatedClass(Product.class).addAnnotatedClass(Category.class).addAnnotatedClass(Users.class).addAnnotatedClass(Order.class);
+                                    Configuration configuration10021 = new Configuration()
+                                            .addAnnotatedClass(Product.class)
+                                            .addAnnotatedClass(Category.class)
+                                            .addAnnotatedClass(Users.class)
+                                            .addAnnotatedClass(Order.class)
+                                            .addAnnotatedClass(Status.class);
+
                                     SessionFactory factory10021 = configuration10021.buildSessionFactory();
                                     Session session10021 = null;
                                     try {
@@ -1388,13 +1389,10 @@ public class Test {
                                             for (Product product : user1.getProductList()) {
                                                 sum = sum + product.getProduct_price();
                                                 System.out.println(product);
-
                                             }
                                             System.out.println("Итоговая цена  = " + sum);
-
                                         }
                                         session10021.getTransaction().commit();
-
 
                                     } finally {
                                         session10021.close();
@@ -1424,6 +1422,7 @@ public class Test {
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
+
                                     SessionFactory factory10022 = configuration10022.buildSessionFactory();
                                     Session session10022 = null;
                                     try {
@@ -1465,6 +1464,7 @@ public class Test {
                                     boolean isCategory = false;
                                     String nameCategory;
                                     int findIdProd;
+                                    int cc = 0; //счетчик
 
                                     Configuration configuration10023 = new Configuration()
                                             .addAnnotatedClass(Product.class)
@@ -1480,7 +1480,6 @@ public class Test {
                                     try {
                                         session10023 = factory10023.getCurrentSession();
                                         session10023.beginTransaction();
-
 
                                         System.out.println("Поиск подходящих товаров по категории и по цене");
 
@@ -1543,7 +1542,6 @@ public class Test {
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-
                                     SessionFactory factory10024 = configuration10024.buildSessionFactory();
 
                                     Session session10024 = null;
@@ -1555,8 +1553,12 @@ public class Test {
                                         productSses = session10024.createQuery("from Product").getResultList();
                                         for (Product prod2 : productSses) {
                                             if ((prod2.getProduct_price() >= startPriceProd) && (prod2.getProduct_price() <= endPriceProd) && (prod2.getCat().id == findIdProd)) {
+                                                cc++;
                                                 System.out.println(prod2);
                                             }
+                                        }
+                                        if (cc == 0) {
+                                            System.out.println("Нет товаров, соответствующих указанным условиям");
                                         }
                                         session10024.getTransaction().commit();
 
@@ -1569,117 +1571,138 @@ public class Test {
 
                                 case "7":
                                     System.out.println("Оформить заказ");
+                                    boolean cartnotnull = true; // т.е. корзина не пуста
 
-                                    // Получение уникальной строки - она будет номером заказа
-                                    String uuid = UUID.randomUUID().toString();
-
-
-                                    // Получение даты и времени
-                                    LocalDate date = LocalDate.now();
-                                    LocalTime time = LocalTime.now();
-                                    LocalDateTime current = LocalDateTime.of(date, time);
-
-
-                                    //Создаем лист заказа
-                                    List<Product> productorderList = new ArrayList<>();
-
-                                    Users user543 = null;
-
-
-                                    Configuration configuration10025 = new Configuration()
-                                            .addAnnotatedClass(Product.class)
-                                            .addAnnotatedClass(Category.class)
-                                            .addAnnotatedClass(Users.class)
-                                            .addAnnotatedClass(Order.class)
-                                            .addAnnotatedClass(Status.class);
-                                    SessionFactory factory10025 = configuration10025.buildSessionFactory();
-                                    Session session10025 = null;
-                                    try {
-                                        session10025 = factory10025.getCurrentSession();
-                                        session10025.beginTransaction();
-                                        user543 = session10025.get(Users.class, identificator);
-
-                                        //Получаем товары из корзины пользователя...
-                                        for (Product product : user543.getProductList()) {
-                                            //...и добавляем их в лист заказа
-                                            productorderList.add(product);
-
-                                            //... и удаляем товары из корзины пользователя
-                                            product.getUsersList().remove(user543);
-                                        }
-
-
-                                        for (Product productorder : productorderList) {
-                                            Order newOrder = new Order(uuid, user543, productorder, current, Status.Оформлен);
-                                            session10025.persist(newOrder);
-                                        }
-
-
-                                        session10025.getTransaction().commit();
-
-
-                                    } finally {
-                                        session10025.close();
-                                        factory10025.close();
-                                    }
-
-                                    Configuration configuration10026 = new Configuration()
+                                    Configuration configuration100211 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-
-                                    SessionFactory factory10026 = configuration10026.buildSessionFactory();
-
-                                    Session session10026 = null;
+                                    SessionFactory factory100211 = configuration100211.buildSessionFactory();
+                                    Session session100211 = null;
                                     try {
-                                        session10026 = factory10026.getCurrentSession();
-                                        session10026.beginTransaction();
+                                        session100211 = factory100211.getCurrentSession();
+                                        session100211.beginTransaction();
+                                        user1 = session100211.get(Users.class, identificator);
 
-                                        double price = 0;
-                                        List<Order> orderList = new ArrayList<>();
-                                        orderList = session10026.createQuery("from Order").getResultList();
-                                        System.out.println("Информация о заказе:");
-                                        System.out.println("Номер заказа: " + uuid);
-
-                                        //дата и время
-                                        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("dd.MM.yy, HH:mm");
-                                        String text = dtf1.format(current);
-                                        System.out.println("Дата и время заказа: " + text);
-
-                                        // Получение статуса заказа
-                                        for (Order order : orderList) {
-                                            if (order.getNumber().equals(uuid)) {
-                                                System.out.println("Статус заказа: " + order.getStatus());
-                                                break;
-                                            }
+                                        if (user1.getProductList().isEmpty()) {
+                                            cartnotnull = false; // т.е. корзина пуста
                                         }
 
-                                        System.out.println("Список товаров заказа:");
+                                        if (cartnotnull == false) { // если корзина пуста
 
-                                        for (Order order : orderList) {
-                                            if (order.getNumber().equals(uuid)) {
+                                            System.out.println("Заказ не может быть сделан т.к. в корзине нет товаров");
+                                        } else if (cartnotnull) { // если корзина не пуста
 
-                                                System.out.println("id товара - " + order.getProduct().getId() + " , артикул товара - " + order.getProduct().getCode() + ", наименование товара - " + order.getProduct().getProduct_name() + ", цена товара - " + order.getProduct().getProduct_price());
-                                                price = order.getProduct().getProduct_price() + price;
+                                            // Получение уникальной строки - она будет номером заказа
+                                            String uuid = UUID.randomUUID().toString();
+
+                                            // Получение даты и времени
+                                            LocalDate date = LocalDate.now();
+                                            LocalTime time = LocalTime.now();
+                                            LocalDateTime current = LocalDateTime.of(date, time);
+
+                                            //Создаем лист заказа
+                                            List<Product> productorderList = new ArrayList<>();
+
+                                            Users user543;
+
+                                            Configuration configuration10025 = new Configuration()
+                                                    .addAnnotatedClass(Product.class)
+                                                    .addAnnotatedClass(Category.class)
+                                                    .addAnnotatedClass(Users.class)
+                                                    .addAnnotatedClass(Order.class)
+                                                    .addAnnotatedClass(Status.class);
+                                            SessionFactory factory10025 = configuration10025.buildSessionFactory();
+                                            Session session10025 = null;
+
+                                            try {
+                                                session10025 = factory10025.getCurrentSession();
+                                                session10025.beginTransaction();
+                                                user543 = session10025.get(Users.class, identificator);
+
+                                                //Получаем товары из корзины пользователя...
+                                                for (Product product : user543.getProductList()) {
+                                                    //...и добавляем их в лист заказа
+                                                    productorderList.add(product);
+
+                                                    //... и удаляем товары из корзины пользователя
+                                                    product.getUsersList().remove(user543);
+                                                }
+
+                                                for (Product productorder : productorderList) {
+                                                    Order newOrder = new Order(uuid, user543, productorder, current, Status.Оформлен);
+                                                    session10025.persist(newOrder);
+                                                }
+
+                                                session10025.getTransaction().commit();
+
+                                            } finally {
+                                                session10025.close();
+                                                factory10025.close();
                                             }
 
+                                            Configuration configuration10026 = new Configuration()
+                                                    .addAnnotatedClass(Product.class)
+                                                    .addAnnotatedClass(Category.class)
+                                                    .addAnnotatedClass(Users.class)
+                                                    .addAnnotatedClass(Order.class)
+                                                    .addAnnotatedClass(Status.class);
+
+                                            SessionFactory factory10026 = configuration10026.buildSessionFactory();
+
+                                            Session session10026 = null;
+                                            try {
+                                                session10026 = factory10026.getCurrentSession();
+                                                session10026.beginTransaction();
+
+                                                double price = 0;
+                                                List<Order> orderList = new ArrayList<>();
+                                                orderList = session10026.createQuery("from Order").getResultList();
+                                                System.out.println("Информация о заказе:");
+                                                System.out.println("Номер заказа: " + uuid);
+
+                                                //дата и время
+                                                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("dd.MM.yy, HH:mm");
+                                                String text = dtf1.format(current);
+                                                System.out.println("Дата и время заказа: " + text);
+
+                                                // Получение статуса заказа
+                                                for (Order order : orderList) {
+                                                    if (order.getNumber().equals(uuid)) {
+                                                        System.out.println("Статус заказа: " + order.getStatus());
+                                                        break;
+                                                    }
+                                                }
+
+                                                System.out.println("Список товаров заказа:");
+
+                                                for (Order order : orderList) {
+                                                    if (order.getNumber().equals(uuid)) {
+
+                                                        System.out.println("id товара - " + order.getProduct().getId() + " , артикул товара - " + order.getProduct().getCode() + ", наименование товара - " + order.getProduct().getProduct_name() + ", цена товара - " + order.getProduct().getProduct_price());
+                                                        price = order.getProduct().getProduct_price() + price;
+                                                    }
+                                                }
+
+                                                System.out.println("Итоговая цена: " + price);
+                                                price = 0;
+
+
+                                                session10026.getTransaction().commit();
+
+                                            } finally {
+                                                session10026.close();
+                                                factory10026.close();
+                                            }
+                                            System.out.println();
                                         }
-
-                                        System.out.println("Итоговая цена: " + price);
-                                        price = 0;
-
-
-                                        session10026.getTransaction().commit();
-
                                     } finally {
-                                        session10026.close();
-                                        factory10026.close();
+                                        session100211.close();
+                                        factory100211.close();
                                     }
-                                    System.out.println();
-
 
                                     break;
 
@@ -1692,7 +1715,6 @@ public class Test {
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-
                                     SessionFactory factory10027 = configuration10027.buildSessionFactory();
                                     Session session10027 = null;
 
@@ -1704,7 +1726,6 @@ public class Test {
                                         orderList = session10027.createQuery("from Order").getResultList();
 
                                         System.out.println("Информация о Ваших заказах");
-
                                         System.out.println();
 
                                         HashSet<String> hashList = new HashSet<>();
@@ -1753,7 +1774,6 @@ public class Test {
 
                                     System.out.println();
 
-
                                     break;
 
 
@@ -1767,10 +1787,8 @@ public class Test {
                         while (!z2.equals("0"));
                     }
                 }
-
                 return true;
             }
-
         }
         return false;
     }
@@ -1780,8 +1798,13 @@ public class Test {
         System.out.println("Введите id пользователя, которому хотите поменять роль");
 
         Scanner inp2 = new Scanner(System.in);
-        int f = inp2.nextInt();
 
+        while (!inp2.hasNextInt()) {
+            inp2.next();
+            System.out.println("Вы ввели не значение типа int, попробуйте еще раз");
+        }
+
+        int f = inp2.nextInt();
 
         Configuration configuration10028 = new Configuration().
                 addAnnotatedClass(Users.class)
@@ -1789,7 +1812,6 @@ public class Test {
                 .addAnnotatedClass(Category.class)
                 .addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Status.class);
-
 
         SessionFactory factory10028 = configuration10028.buildSessionFactory();
 
@@ -1835,12 +1857,10 @@ public class Test {
                 .addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Status.class);
 
-
         SessionFactory factory10029 = configuration10029.buildSessionFactory();
 
         Session session10029 = null;
         try {
-
 
             session10029 = factory10029.getCurrentSession();
             session10029.beginTransaction();
