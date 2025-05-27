@@ -193,8 +193,8 @@ public class Test {
                                     while (!user.setTelephone_number(scanner.nextLine())) ;
 
 
-                                    Configuration configuration10004 = new Configuration().
-                                            addAnnotatedClass(Users.class)
+                                    Configuration configuration10004 = new Configuration()
+                                            .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
@@ -473,7 +473,7 @@ public class Test {
 
 
     public static boolean rabota_autoriz(List<Users> users) {
-        Scanner input_id_product = new Scanner(System.in);
+        Scanner scanner2 = new Scanner(System.in);  // input_id_product - переименовать на более благозвучное
 
         String z;
         for (Users us3 : users) {
@@ -482,7 +482,7 @@ public class Test {
                 if (us3.getRole().equals("администратор")) {
                     System.out.println("Для работы в меню администратора нажмите любую цифру, отличную от 0");
 
-                    z = input_id_product.nextLine();
+                    z = scanner2.nextLine();
 
                     while (!z.equals("0")) {
                         do {
@@ -498,7 +498,7 @@ public class Test {
                                     "\n9 - для поиска заказа по номеру;" +
                                     "\n10 - для смены статуса заказа;" +
                                     "\n0 - для выхода из меню администратора");
-                            z = input_id_product.nextLine();
+                            z = scanner2.nextLine();
                             switch (z) {
                                 case "1":
                                     Configuration configuration10007 = new Configuration()
@@ -544,7 +544,7 @@ public class Test {
                                         do {
                                             nonuniclogin = false;
 
-                                            while (!category.setName(input_id_product.nextLine())) ;
+                                            while (!category.setName(scanner2.nextLine())) ;
 
 
                                             Configuration configuration10008 = new Configuration()
@@ -584,7 +584,7 @@ public class Test {
                                         System.out.println("Вы ввели наименование категории: " + category.getName());
 
                                         System.out.println("Если наименование категории введено неправильно - нажмите 0, если все правильно - введите любое значение, отличное от 0");
-                                        a1 = input_id_product.nextLine();
+                                        a1 = scanner2.nextLine();
 
                                     }
                                     while (a1.equals("0"));
@@ -656,7 +656,7 @@ public class Test {
                                             SessionFactory factory10011 = configuration10011.buildSessionFactory();
 
                                             Session session10011 = null;
-                                            Scanner cat_id = new Scanner(System.in);
+                                            Scanner catego = new Scanner(System.in);
                                             try {
                                                 session10011 = factory10011.getCurrentSession();
                                                 session10011.beginTransaction();
@@ -671,17 +671,17 @@ public class Test {
 
                                                         //проверка на тип "int"
 
-                                                        while (!cat_id.hasNextInt()) {
-                                                            cat_id.next();
+                                                        while (!catego.hasNextInt()) {
+                                                            catego.next();
                                                             System.out.println("Вы ввели не значение типа int, попробуйте еще раз");
                                                         }
-                                                        value = cat_id.nextInt();
+                                                        value = catego.nextInt();
 
                                                         List<Category> categories = session10011.createQuery("from Category").getResultList();
 
                                                         for (Category cat : categories) {
                                                             if (cat.getId() == value) {
-                                                                categor = cat.getName();
+                                                                //categor = cat.getName(); // это лишнее?
                                                                 isTrue = true;
                                                             }
                                                             if (isTrue) {
@@ -703,12 +703,12 @@ public class Test {
 
                                                     System.out.println("Если значение id введено неправильно - введите 0, иначе введите любое значение целого числа типа int, отличное от 0");
                                                     //проверка на тип "int", если хотим изменить введенное значение
-                                                    while (!cat_id.hasNextInt()) {
-                                                        cat_id.next();
+                                                    while (!catego.hasNextInt()) {
+                                                        catego.next();
                                                         System.out.println("Вы ввели не значение типа int, попробуйте еще раз");
                                                     }
                                                 }
-                                                while (cat_id.nextInt() == 0);
+                                                while (catego.nextInt() == 0);
 
                                                 product.setCat(category1);
                                                 session10011.getTransaction().commit();
@@ -742,17 +742,17 @@ public class Test {
                                             do {
                                                 do {
                                                     System.out.println("Введите цену товара (значение должно быть положительным и типа double)");
-                                                    while (!cat_id.hasNextDouble()) {
-                                                        cat_id.next();
+                                                    while (!catego.hasNextDouble()) {
+                                                        catego.next();
                                                         System.out.println("Вы ввели не значение типа double, попробуйте еще раз");
                                                     }
                                                 }
-                                                while (!product.setProduct_price(cat_id.nextDouble()));
+                                                while (!product.setProduct_price(catego.nextDouble()));
 
                                                 System.out.println("Вы ввели цену: " + product.getProduct_price());
                                                 System.out.println("Если цена введена неправильно - нажмите - 0, если все правильно - введите любое значение, отличное от 0");
                                             }
-                                            while (cat_id.nextDouble() == 0);
+                                            while (catego.nextDouble() == 0);
                                             System.out.println("Цена товара зафиксирована");
                                             System.out.println("Зафиксированная цена товара - " + product.getProduct_price());
                                             System.out.println("_________________________________________________________________________________________________");
@@ -906,10 +906,9 @@ public class Test {
                                         session10014 = factory10014.getCurrentSession();
                                         session10014.beginTransaction();
 
-                                        List<Users> users32 = new ArrayList<>();
-
-                                        users32 = session10014.createQuery("from Users").getResultList();
-                                        for (Users us32 : users32) {
+                                        List<Users> us = new ArrayList<>();
+                                        us = session10014.createQuery("from Users").getResultList();
+                                        for (Users us32 : us) {
                                             System.out.println(us32);
                                         }
                                         session10014.getTransaction().commit();
@@ -1024,7 +1023,7 @@ public class Test {
 
                                         System.out.println("Введите символы окончания номера заказа");
 
-                                        String path = input_id_product.nextLine();
+                                        String path = scanner2.nextLine();
 
 
                                         // Лист, чтобы разместить номера заказов без повтора
@@ -1108,7 +1107,7 @@ public class Test {
                                     Session session10017 = null;
                                     System.out.println("Введите символы окончания номера заказа");
 
-                                    String path = input_id_product.nextLine();
+                                    String path = scanner2.nextLine();
 
                                     String numbstat;
                                     boolean znach = false;
@@ -1150,7 +1149,7 @@ public class Test {
                                             System.out.println(" и статусом - " + tekstatus);
                                             do {
                                                 System.out.println("Для изменения текущего статуса заказа введите кодовое значение нового статуса  (1 - принят, 2 - оформлен, 3 - ожидает или 4 - получен), на который будет изменен текущий статус:");
-                                                numbstat = input_id_product.nextLine();
+                                                numbstat = scanner2.nextLine();
                                                 if (numbstat.equals("1") || numbstat.equals("2") || numbstat.equals("3") || numbstat.equals("4")) {
                                                     znach = true;
                                                 }
@@ -1213,7 +1212,7 @@ public class Test {
                 } else if (us3.getRole().equals("пользователь")) {
                     System.out.println("Для работы в меню пользователя нажмите любую цифру, отличную от 0");
 
-                    String z2 = input_id_product.nextLine();
+                    String z2 = scanner2.nextLine();
 
                     while (!z2.equals("0")) {
                         do {
@@ -1227,7 +1226,7 @@ public class Test {
                                     "\n7 - для оформления заказа;" +
                                     "\n8 - для просмотра списка заказов;" +
                                     "\n0 - для выхода из меню пользователя");
-                            z2 = input_id_product.nextLine();
+                            z2 = scanner2.nextLine();
                             switch (z2) {
 
                                 case "1":
@@ -1303,7 +1302,7 @@ public class Test {
                                     String art;
 
                                     System.out.println("Введите артикул товара, который хотите добавить в корзину");
-                                    art = input_id_product.nextLine();
+                                    art = scanner2.nextLine();
                                     Users user;
 
                                     Configuration configuration10020 = new Configuration()
@@ -1412,7 +1411,7 @@ public class Test {
                                     String art2;
 
                                     System.out.println("Введите артикул товара, который хотите удалить из корзины");
-                                    art2 = input_id_product.nextLine();
+                                    art2 = scanner2.nextLine();
 
                                     Users user2;
 
@@ -1486,11 +1485,11 @@ public class Test {
                                         do {
                                             System.out.println("Введите id категории товара");
                                             // Проверка на тип int
-                                            while (!input_id_product.hasNextInt()) {
-                                                input_id_product.next();
+                                            while (!scanner2.hasNextInt()) {
+                                                scanner2.next();
                                                 System.out.println("Вы ввели не целое число (не значение типа int), попробуйте еще раз");
                                             }
-                                            findIdProd = input_id_product.nextInt();
+                                            findIdProd = scanner2.nextInt();
 
                                             List<Category> categoryList1 = session10023.createQuery("from Category").getResultList();
                                             for (Category cat : categoryList1) {
@@ -1521,19 +1520,19 @@ public class Test {
                                     System.out.println("Введите стартовую цену товара");
 
 
-                                    while (!input_id_product.hasNextDouble()) {
-                                        input_id_product.next();
+                                    while (!scanner2.hasNextDouble()) {
+                                        scanner2.next();
                                         System.out.println("Вы ввели не значение типа double, попробуйте еще раз");
                                     }
-                                    Double startPriceProd = input_id_product.nextDouble();
+                                    Double startPriceProd = scanner2.nextDouble();
 
                                     System.out.println("Введите верхнюю границу цены товара");
 
-                                    while (!input_id_product.hasNextDouble()) {
-                                        input_id_product.next();
+                                    while (!scanner2.hasNextDouble()) {
+                                        scanner2.next();
                                         System.out.println("Вы ввели не значение типа double, попробуйте еще раз");
                                     }
-                                    Double endPriceProd = input_id_product.nextDouble();
+                                    Double endPriceProd = scanner2.nextDouble();
 
                                     Configuration configuration10024 = new Configuration()
                                             .addAnnotatedClass(Product.class)
