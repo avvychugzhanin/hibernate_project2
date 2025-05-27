@@ -35,42 +35,42 @@ public class Test {
                 inputMenu2 = scanner.nextLine();
                 if (inputMenu2.equals("1")) {
 
-                    Configuration configuration10001 = new Configuration()
+                    Configuration configuration10 = new Configuration()
                             .addAnnotatedClass(Users.class)
                             .addAnnotatedClass(Product.class)
                             .addAnnotatedClass(Category.class)
                             .addAnnotatedClass(Order.class)
                             .addAnnotatedClass(Status.class);
 
-                    SessionFactory factory10001 = configuration10001.buildSessionFactory();
-                    Session session10001 = null;
+                    SessionFactory factory10 = configuration10.buildSessionFactory();
+                    Session session10 = null;
 
                     try {
-                        session10001 = factory10001.getCurrentSession();
-                        session10001.beginTransaction();
+                        session10 = factory10.getCurrentSession();
+                        session10.beginTransaction();
 
                         List<Users> users = new ArrayList<>();
 
-                        users = session10001.createQuery("from Users").getResultList();
+                        users = session10.createQuery("from Users").getResultList();
 
                         КолвоЭлементовКласса = users.size();
-                        session10001.getTransaction().commit();
+                        session10.getTransaction().commit();
                     } finally {
-                        session10001.close();
-                        factory10001.close();
+                        session10.close();
+                        factory10.close();
                     }
 
-                    Configuration configuration10002 = new Configuration()
+                    Configuration configuration20 = new Configuration()
                             .addAnnotatedClass(Users.class)
                             .addAnnotatedClass(Product.class)
                             .addAnnotatedClass(Category.class)
                             .addAnnotatedClass(Order.class)
                             .addAnnotatedClass(Status.class);
 
-                    SessionFactory factory10002 = configuration10002.buildSessionFactory();
-                    Session session10002 = null;
+                    SessionFactory factory20 = configuration20.buildSessionFactory();
+                    Session session20 = null;
                     try {
-                        session10002 = factory10002.getCurrentSession();
+                        session20 = factory20.getCurrentSession();
 
                         String a1;
                         String a2;
@@ -134,35 +134,35 @@ public class Test {
 
                                     while (!user.setEmail(scanner.nextLine().toLowerCase())) ;
 
-                                    Configuration configuration10003 = new Configuration()
+                                    Configuration configuration30 = new Configuration()
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10003 = configuration10003.buildSessionFactory();
+                                    SessionFactory factory30 = configuration30.buildSessionFactory();
 
-                                    Session session10003 = null;
+                                    Session session30 = null;
                                     try {
-                                        session10003 = factory10003.getCurrentSession();
-                                        session10003.beginTransaction();
+                                        session30 = factory30.getCurrentSession();
+                                        session30.beginTransaction();
 
                                         List<Users> users = new ArrayList<>();
 
-                                        users = session10003.createQuery("from Users").getResultList();
+                                        users = session30.createQuery("from Users").getResultList();
                                         for (Users us3 : users) {
                                             if (us3.getEmail().equals(user.getEmail())) {
                                                 nonunicemail = true;
                                                 System.out.println("Пользователь с таким email уже добавлен. Введите другое значение email ");
                                             }
                                         }
-                                        session10003.getTransaction().commit();
+                                        session30.getTransaction().commit();
 
 
                                     } finally {
-                                        session10003.close();
-                                        factory10003.close();
+                                        session30.close();
+                                        factory30.close();
                                     }
                                 }
                                 while (nonunicemail);
@@ -193,35 +193,35 @@ public class Test {
                                     while (!user.setTelephone_number(scanner.nextLine())) ;
 
 
-                                    Configuration configuration10004 = new Configuration()
+                                    Configuration configuration40 = new Configuration()
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10004 = configuration10004.buildSessionFactory();
+                                    SessionFactory factory40 = configuration40.buildSessionFactory();
 
-                                    Session session10004 = null;
+                                    Session session40 = null;
                                     try {
-                                        session10004 = factory10004.getCurrentSession();
-                                        session10004.beginTransaction();
+                                        session40 = factory40.getCurrentSession();
+                                        session40.beginTransaction();
 
                                         List<Users> users = new ArrayList<>();
 
-                                        users = session10004.createQuery("from Users").getResultList();
+                                        users = session40.createQuery("from Users").getResultList();
                                         for (Users us3 : users) {
                                             if (us3.getTelephone_number().equals(user.getTelephone_number())) {
                                                 nonunic_telephone_number = true;
                                                 System.out.println("Пользователь с таким номером телефона уже зарегистрирован. Введите другое значение номера телефона ");
                                             }
                                         }
-                                        session10004.getTransaction().commit();
+                                        session40.getTransaction().commit();
 
 
                                     } finally {
-                                        session10004.close();
-                                        factory10004.close();
+                                        session40.close();
+                                        factory40.close();
                                     }
                                 }
                                 while (nonunic_telephone_number);
@@ -256,7 +256,7 @@ public class Test {
 
                                     while (!user.setLogin(scanner.nextLine())) ;
 
-                                    Configuration configuration10005 =
+                                    Configuration configuration50 =
                                             new Configuration()
                                                     .addAnnotatedClass(Users.class)
                                                     .addAnnotatedClass(Product.class)
@@ -264,27 +264,27 @@ public class Test {
                                                     .addAnnotatedClass(Order.class)
                                                     .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10005 = configuration10005.buildSessionFactory();
+                                    SessionFactory factory50 = configuration50.buildSessionFactory();
 
-                                    Session session10005 = null;
+                                    Session session50 = null;
                                     try {
-                                        session10005 = factory10005.getCurrentSession();
-                                        session10005.beginTransaction();
+                                        session50 = factory50.getCurrentSession();
+                                        session50.beginTransaction();
 
                                         List<Users> users = new ArrayList<>();
 
-                                        users = session10005.createQuery("from Users").getResultList();
+                                        users = session50.createQuery("from Users").getResultList();
                                         for (Users us3 : users) {
                                             if (us3.getLogin().equals(user.getLogin())) {
                                                 nonuniclogin = true;
                                                 System.out.println("Пользователь с таким логином уже добавлен. Введите другое значение логина");
                                             }
                                         }
-                                        session10005.getTransaction().commit();
+                                        session50.getTransaction().commit();
 
                                     } finally {
-                                        session10005.close();
-                                        factory10005.close();
+                                        session50.close();
+                                        factory50.close();
                                     }
                                 }
                                 while (nonuniclogin);
@@ -343,17 +343,17 @@ public class Test {
                         System.out.println("Данные о пользователе зафиксированы");
 //_____________________________________________________________________________________________________________________________
 
-                        session10002.beginTransaction();
-                        session10002.persist(user);
+                        session20.beginTransaction();
+                        session20.persist(user);
 
-                        session10002.getTransaction().commit();
+                        session20.getTransaction().commit();
 
                         System.out.println("Регистрация пользователя завершена, информация о пользователе записана в базу данных");
                         System.out.println(user);
 
                     } finally {
-                        session10002.close();
-                        factory10002.close();
+                        session20.close();
+                        factory20.close();
                     }
 
                 }
@@ -385,32 +385,32 @@ public class Test {
                     System.out.println("Введите пароль");
                     String passwordAuth = scanner.nextLine();
 
-                    Configuration configuration10006 = new Configuration()
+                    Configuration configuration60 = new Configuration()
                             .addAnnotatedClass(Users.class)
                             .addAnnotatedClass(Product.class)
                             .addAnnotatedClass(Category.class)
                             .addAnnotatedClass(Order.class)
                             .addAnnotatedClass(Status.class);
 
-                    SessionFactory factory10006 = configuration10006.buildSessionFactory();
+                    SessionFactory factory60 = configuration60.buildSessionFactory();
 
-                    Session session10006 = null;
+                    Session session60 = null;
                     try {
-                        session10006 = factory10006.getCurrentSession();
-                        session10006.beginTransaction();
+                        session60 = factory60.getCurrentSession();
+                        session60.beginTransaction();
 
                         List<Users> users = new ArrayList<>();
 
-                        users = session10006.createQuery("from Users").getResultList();
+                        users = session60.createQuery("from Users").getResultList();
                         if ((findUser1(login, passwordAuth, users)) || (findUser2(login, passwordAuth, users)) || (findUser3(login, passwordAuth, users))) {
 
                         } else {
                             System.out.println("Вы НЕ АВТОИЗОВАНЫ");
                         }
-                        session10006.getTransaction().commit();
+                        session60.getTransaction().commit();
                     } finally {
-                        session10006.close();
-                        factory10006.close();
+                        session60.close();
+                        factory60.close();
                     }
                 }
             } else if (inputMenu.equals("0")) {
@@ -501,31 +501,31 @@ public class Test {
                             z = scanner2.nextLine();
                             switch (z) {
                                 case "1":
-                                    Configuration configuration10007 = new Configuration()
+                                    Configuration configuration70 = new Configuration()
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10007 = configuration10007.buildSessionFactory();
+                                    SessionFactory factory70 = configuration70.buildSessionFactory();
 
-                                    Session session10007 = null;
+                                    Session session70 = null;
                                     try {
-                                        session10007 = factory10007.getCurrentSession();
-                                        session10007.beginTransaction();
+                                        session70 = factory70.getCurrentSession();
+                                        session70.beginTransaction();
                                         List<Category> categoryList = new ArrayList<>();
 
-                                        categoryList = session10007.createQuery("from Category").getResultList();
+                                        categoryList = session70.createQuery("from Category").getResultList();
                                         for (Category category : categoryList) {
                                             System.out.println(category);
                                         }
-                                        session10007.getTransaction().commit();
+                                        session70.getTransaction().commit();
 
                                         System.out.println("Выше выведена информация о всех категориях товаров из базы данных");
                                     } finally {
-                                        session10007.close();
-                                        factory10007.close();
+                                        session70.close();
+                                        factory70.close();
                                     }
 
                                     break;
@@ -547,34 +547,34 @@ public class Test {
                                             while (!category.setName(scanner2.nextLine())) ;
 
 
-                                            Configuration configuration10008 = new Configuration()
+                                            Configuration configuration80 = new Configuration()
                                                     .addAnnotatedClass(Users.class)
                                                     .addAnnotatedClass(Product.class)
                                                     .addAnnotatedClass(Category.class)
                                                     .addAnnotatedClass(Order.class)
                                                     .addAnnotatedClass(Status.class);
 
-                                            SessionFactory factory10008 = configuration10008.buildSessionFactory();
+                                            SessionFactory factory80 = configuration80.buildSessionFactory();
 
-                                            Session session10008 = null;
+                                            Session session80 = null;
                                             try {
-                                                session10008 = factory10008.getCurrentSession();
-                                                session10008.beginTransaction();
+                                                session80 = factory80.getCurrentSession();
+                                                session80.beginTransaction();
 
                                                 List<Category> categories = new ArrayList<>();
 
-                                                categories = session10008.createQuery("from Category").getResultList();
+                                                categories = session80.createQuery("from Category").getResultList();
                                                 for (Category categ : categories) {
                                                     if (categ.getName().equals(category.getName())) {
                                                         nonuniclogin = true;
                                                         System.out.println("Такая категория товаров уже добавлена. Введите другое значение категории товаров");
                                                     }
                                                 }
-                                                session10008.getTransaction().commit();
+                                                session80.getTransaction().commit();
 
                                             } finally {
-                                                session10008.close();
-                                                factory10008.close();
+                                                session80.close();
+                                                factory80.close();
                                             }
 
                                         }
@@ -592,28 +592,28 @@ public class Test {
                                     System.out.println("Зафиксированное наименование категории - " + category.getName());
 
 
-                                    Configuration configuration10009 = new Configuration()
+                                    Configuration configuration90 = new Configuration()
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10009 = configuration10009.buildSessionFactory();
+                                    SessionFactory factory90 = configuration90.buildSessionFactory();
 
-                                    Session session10009 = null;
+                                    Session session90 = null;
                                     try {
-                                        session10009 = factory10009.getCurrentSession();
+                                        session90 = factory90.getCurrentSession();
 
-                                        session10009.beginTransaction();
-                                        session10009.persist(category);
+                                        session90.beginTransaction();
+                                        session90.persist(category);
 
-                                        session10009.getTransaction().commit();
+                                        session90.getTransaction().commit();
 
 
                                     } finally {
-                                        session10009.close();
-                                        factory10009.close();
+                                        session90.close();
+                                        factory90.close();
                                     }
 
 
@@ -627,25 +627,25 @@ public class Test {
 
                                     Product product = new Product();
 
-                                    Configuration configuration10010 = new Configuration()
+                                    Configuration configuration100 = new Configuration()
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10010 = configuration10010.buildSessionFactory();
+                                    SessionFactory factory100 = configuration100.buildSessionFactory();
 
-                                    Session session10010 = null;
+                                    Session session100 = null;
                                     String a2;
                                     try {
-                                        session10010 = factory10010.getCurrentSession();
-                                        session10010.beginTransaction();
+                                        session100 = factory100.getCurrentSession();
+                                        session100.beginTransaction();
                                         do {
 
                                             Category category1 = null;
 
-                                            Configuration configuration10011 = new Configuration()
+                                            Configuration configuration110 = new Configuration()
                                                     .addAnnotatedClass(Users.class)
                                                     .addAnnotatedClass(Product.class)
                                                     .addAnnotatedClass(Category.class)
@@ -653,13 +653,13 @@ public class Test {
                                                     .addAnnotatedClass(Status.class);
 
 
-                                            SessionFactory factory10011 = configuration10011.buildSessionFactory();
+                                            SessionFactory factory110 = configuration110.buildSessionFactory();
 
-                                            Session session10011 = null;
+                                            Session session110 = null;
                                             Scanner catego = new Scanner(System.in);
                                             try {
-                                                session10011 = factory10011.getCurrentSession();
-                                                session10011.beginTransaction();
+                                                session110 = factory110.getCurrentSession();
+                                                session110.beginTransaction();
 
                                                 int value;
 
@@ -677,7 +677,7 @@ public class Test {
                                                         }
                                                         value = catego.nextInt();
 
-                                                        List<Category> categories = session10011.createQuery("from Category").getResultList();
+                                                        List<Category> categories = session110.createQuery("from Category").getResultList();
 
                                                         for (Category cat : categories) {
                                                             if (cat.getId() == value) {
@@ -697,7 +697,7 @@ public class Test {
                                                     }
 
                                                     while (!isTrue);
-                                                    category1 = session10011.get(Category.class, value);
+                                                    category1 = session110.get(Category.class, value);
                                                     System.out.println("Вы ввели значение id = " + value + " ,что соответствует категории - " + categor); // вывод текста если введенное значение соответствует true
 
 
@@ -711,11 +711,11 @@ public class Test {
                                                 while (catego.nextInt() == 0);
 
                                                 product.setCat(category1);
-                                                session10011.getTransaction().commit();
+                                                session110.getTransaction().commit();
 
                                             } finally {
-                                                session10011.close();
-                                                factory10011.close();
+                                                session110.close();
+                                                factory110.close();
                                             }
 
 //________________________________________________________________________________________________________________________________________________________________________________
@@ -767,27 +767,27 @@ public class Test {
 
                                                 do {
                                                     int count = 0;
-                                                    Configuration configuration10012 = new Configuration()
+                                                    Configuration configuration120 = new Configuration()
                                                             .addAnnotatedClass(Users.class)
                                                             .addAnnotatedClass(Product.class)
                                                             .addAnnotatedClass(Category.class)
                                                             .addAnnotatedClass(Order.class)
                                                             .addAnnotatedClass(Status.class);
 
-                                                    SessionFactory factory10012 = configuration10012.buildSessionFactory();
+                                                    SessionFactory factory120 = configuration120.buildSessionFactory();
 
-                                                    Session session10012 = null;
+                                                    Session session120 = null;
 
                                                     try {
-                                                        session10012 = factory10012.getCurrentSession();
-                                                        session10012.beginTransaction();
+                                                        session120 = factory120.getCurrentSession();
+                                                        session120.beginTransaction();
                                                         System.out.println("Введите артикул товара (формат ввода: первые 2 символа - заглавные буквы, остальные 4 символа - цифры)");
 
 
                                                         while (!product.setCode(inputArticul.nextLine())) ;
 
 
-                                                        List<Product> productList = session10012.createQuery("from Product").getResultList();
+                                                        List<Product> productList = session120.createQuery("from Product").getResultList();
 
                                                         for (Product p : productList) {
 
@@ -804,11 +804,11 @@ public class Test {
                                                         } else {
                                                             System.out.println("Вы ввели уникальное значение артикула");
                                                         }
-                                                        session10012.getTransaction().commit();
+                                                        session120.getTransaction().commit();
 
                                                     } finally {
-                                                        session10012.close();
-                                                        factory10012.close();
+                                                        session120.close();
+                                                        factory120.close();
                                                     }
                                                 }
 
@@ -835,13 +835,13 @@ public class Test {
                                         System.out.println("_______________________________________________________________________________");
                                         System.out.println("Данные о товаре зафиксированы");
 
-                                        session10010.persist(product);
-                                        session10010.getTransaction().commit();
+                                        session100.persist(product);
+                                        session100.getTransaction().commit();
                                         System.out.println("Регистрация товара завершена, информация о товаре записана в базу данных");
 
                                     } finally {
-                                        session10010.close();
-                                        factory10010.close();
+                                        session100.close();
+                                        factory100.close();
                                     }
 
                                     break;
@@ -859,31 +859,31 @@ public class Test {
 
                                 case "5"://информация о всех товарах из базы данных
 
-                                    Configuration configuration10013 = new Configuration()
+                                    Configuration configuration130 = new Configuration()
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10013 = configuration10013.buildSessionFactory();
+                                    SessionFactory factory130 = configuration130.buildSessionFactory();
 
-                                    Session session10013 = null;
+                                    Session session130 = null;
                                     try {
-                                        session10013 = factory10013.getCurrentSession();
-                                        session10013.beginTransaction();
+                                        session130 = factory130.getCurrentSession();
+                                        session130.beginTransaction();
                                         List<Product> productSses = new ArrayList<>();
 
-                                        productSses = session10013.createQuery("from Product").getResultList();
+                                        productSses = session130.createQuery("from Product").getResultList();
                                         for (Product prod2 : productSses) {
                                             System.out.println(prod2);
                                         }
-                                        session10013.getTransaction().commit();
+                                        session130.getTransaction().commit();
 
                                         System.out.println("Выше выведена информация о всех товарах из базы данных");
                                     } finally {
-                                        session10013.close();
-                                        factory10013.close();
+                                        session130.close();
+                                        factory130.close();
                                     }
 
                                     break;
@@ -892,31 +892,31 @@ public class Test {
                                 case "6":
                                     //  "Информация о зарегистрированных пользователях:"
 
-                                    Configuration configuration10014 = new Configuration().
+                                    Configuration configuration140 = new Configuration().
                                             addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10014 = configuration10014.buildSessionFactory();
+                                    SessionFactory factory140 = configuration140.buildSessionFactory();
 
-                                    Session session10014 = null;
+                                    Session session140 = null;
                                     try {
-                                        session10014 = factory10014.getCurrentSession();
-                                        session10014.beginTransaction();
+                                        session140 = factory140.getCurrentSession();
+                                        session140.beginTransaction();
 
                                         List<Users> us = new ArrayList<>();
-                                        us = session10014.createQuery("from Users").getResultList();
+                                        us = session140.createQuery("from Users").getResultList();
                                         for (Users us32 : us) {
                                             System.out.println(us32);
                                         }
-                                        session10014.getTransaction().commit();
+                                        session140.getTransaction().commit();
 
                                         System.out.println("Выше выведена информация о всех зарегистрированных пользователях из базы данных");
                                     } finally {
-                                        session10014.close();
-                                        factory10014.close();
+                                        session140.close();
+                                        factory140.close();
                                     }
                                     break;
 
@@ -929,23 +929,23 @@ public class Test {
 
                                 case "8":
 
-                                    Configuration configuration10015 = new Configuration()
+                                    Configuration configuration150 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10015 = configuration10015.buildSessionFactory();
+                                    SessionFactory factory150 = configuration150.buildSessionFactory();
 
-                                    Session session10015 = null;
+                                    Session session150 = null;
                                     try {
-                                        session10015 = factory10015.getCurrentSession();
-                                        session10015.beginTransaction();
+                                        session150 = factory150.getCurrentSession();
+                                        session150.beginTransaction();
 
                                         double price = 0;
                                         List<Order> orderList = new ArrayList<>();
-                                        orderList = session10015.createQuery("from Order").getResultList();
+                                        orderList = session150.createQuery("from Order").getResultList();
 
 
                                         System.out.println("ИНФОРМАЦИЯ ОБО ВСЕХ ЗАКАЗАХ:");
@@ -987,11 +987,11 @@ public class Test {
 
                                         System.out.println("Итого количество заказов у всех пользователей: " + hashList.size());
 
-                                        session10015.getTransaction().commit();
+                                        session150.getTransaction().commit();
 
                                     } finally {
-                                        session10015.close();
-                                        factory10015.close();
+                                        session150.close();
+                                        factory150.close();
                                     }
                                     System.out.println();
 
@@ -1003,23 +1003,23 @@ public class Test {
                                     boolean isorderin = false;
                                     int counterin = 0;
 
-                                    Configuration configuration10016 = new Configuration()
+                                    Configuration configuration160 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10016 = configuration10016.buildSessionFactory();
+                                    SessionFactory factory160 = configuration160.buildSessionFactory();
 
-                                    Session session10016 = null;
+                                    Session session160 = null;
                                     try {
-                                        session10016 = factory10016.getCurrentSession();
-                                        session10016.beginTransaction();
+                                        session160 = factory160.getCurrentSession();
+                                        session160.beginTransaction();
 
                                         double price = 0;
                                         List<Order> orderList = new ArrayList<>();
-                                        orderList = session10016.createQuery("from Order").getResultList();
+                                        orderList = session160.createQuery("from Order").getResultList();
 
                                         System.out.println("Введите символы окончания номера заказа");
 
@@ -1076,11 +1076,11 @@ public class Test {
                                             }
                                         }
 
-                                        session10016.getTransaction().commit();
+                                        session160.getTransaction().commit();
 
                                     } finally {
-                                        session10016.close();
-                                        factory10016.close();
+                                        session160.close();
+                                        factory160.close();
                                     }
                                     System.out.println();
 
@@ -1095,16 +1095,16 @@ public class Test {
                                     Status status = null;
                                     Status tekstatus = null;
 
-                                    Configuration configuration10017 = new Configuration()
+                                    Configuration configuration170 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10017 = configuration10017.buildSessionFactory();
+                                    SessionFactory factory170 = configuration170.buildSessionFactory();
 
-                                    Session session10017 = null;
+                                    Session session170 = null;
                                     System.out.println("Введите символы окончания номера заказа");
 
                                     String path = scanner2.nextLine();
@@ -1114,11 +1114,11 @@ public class Test {
                                     boolean isorder = false;
 
                                     try {
-                                        session10017 = factory10017.getCurrentSession();
-                                        session10017.beginTransaction();
+                                        session170 = factory170.getCurrentSession();
+                                        session170.beginTransaction();
 
                                         List<Order> orderList = new ArrayList<>();
-                                        orderList = session10017.createQuery("from Order").getResultList();
+                                        orderList = session170.createQuery("from Order").getResultList();
 
                                         for (Order o : orderList) {
                                             if (o.getNumber().endsWith(path)) {
@@ -1192,11 +1192,11 @@ public class Test {
                                             System.out.println("У товара с номером " + temp + " статус заказа изменен на - " + status);
                                         }
 
-                                        session10017.getTransaction().commit();
+                                        session170.getTransaction().commit();
 
                                     } finally {
-                                        session10017.close();
-                                        factory10017.close();
+                                        session170.close();
+                                        factory170.close();
                                     }
 
                                     break;
@@ -1231,61 +1231,61 @@ public class Test {
 
                                 case "1":
 
-                                    Configuration configuration10018 = new Configuration()
+                                    Configuration configuration180 = new Configuration()
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10018 = configuration10018.buildSessionFactory();
+                                    SessionFactory factory180 = configuration180.buildSessionFactory();
 
-                                    Session session10018 = null;
+                                    Session session180 = null;
                                     try {
-                                        session10018 = factory10018.getCurrentSession();
-                                        session10018.beginTransaction();
+                                        session180 = factory180.getCurrentSession();
+                                        session180.beginTransaction();
                                         List<Category> categoryList = new ArrayList<>();
 
-                                        categoryList = session10018.createQuery("from Category").getResultList();
+                                        categoryList = session180.createQuery("from Category").getResultList();
                                         for (Category category : categoryList) {
                                             System.out.println(category);
                                         }
-                                        session10018.getTransaction().commit();
+                                        session180.getTransaction().commit();
 
                                         System.out.println("Выше выведена информация о всех категориях товаров из базы данных");
                                     } finally {
-                                        session10018.close();
-                                        factory10018.close();
+                                        session180.close();
+                                        factory180.close();
                                     }
 
                                     break;
                                 case "2"://информация о всех товарах из базы данных
 
-                                    Configuration configuration10019 = new Configuration()
+                                    Configuration configuration190 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10019 = configuration10019.buildSessionFactory();
+                                    SessionFactory factory190 = configuration190.buildSessionFactory();
 
-                                    Session session10019 = null;
+                                    Session session190 = null;
                                     try {
-                                        session10019 = factory10019.getCurrentSession();
-                                        session10019.beginTransaction();
+                                        session190 = factory190.getCurrentSession();
+                                        session190.beginTransaction();
                                         List<Product> productSses = new ArrayList<>();
 
-                                        productSses = session10019.createQuery("from Product").getResultList();
+                                        productSses = session190.createQuery("from Product").getResultList();
                                         for (Product prod2 : productSses) {
                                             System.out.println(prod2);
                                         }
-                                        session10019.getTransaction().commit();
+                                        session190.getTransaction().commit();
 
                                         System.out.println("Выше выведена информация о всех товарах из базы данных");
                                     } finally {
-                                        session10019.close();
-                                        factory10019.close();
+                                        session190.close();
+                                        factory190.close();
                                     }
 
                                     break;
@@ -1305,21 +1305,21 @@ public class Test {
                                     art = scanner2.nextLine();
                                     Users user;
 
-                                    Configuration configuration10020 = new Configuration()
+                                    Configuration configuration200 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10020 = configuration10020.buildSessionFactory();
-                                    Session session10020 = null;
+                                    SessionFactory factory200 = configuration200.buildSessionFactory();
+                                    Session session200 = null;
                                     try {
-                                        session10020 = factory10020.getCurrentSession();
-                                        session10020.beginTransaction();
-                                        user = session10020.get(Users.class, identificator);
+                                        session200 = factory200.getCurrentSession();
+                                        session200.beginTransaction();
+                                        user = session200.get(Users.class, identificator);
 
-                                        List<Product> productList = session10020.createQuery("from Product").getResultList();
+                                        List<Product> productList = session200.createQuery("from Product").getResultList();
 
 
                                         for (Product pruductOfUser : user.getProductList()) {
@@ -1344,15 +1344,15 @@ public class Test {
                                         }
 
 
-                                        session10020.getTransaction().commit();
+                                        session200.getTransaction().commit();
 
                                         if (count != 0) {
                                             System.out.println("Товар с артикулом " + art + " и названием " + tovarname + " добавлен в корзину");
                                         }
 
                                     } finally {
-                                        session10020.close();
-                                        factory10020.close();
+                                        session200.close();
+                                        factory200.close();
                                     }
 
                                     break;
@@ -1365,19 +1365,19 @@ public class Test {
                                     Users user1;
 
 
-                                    Configuration configuration10021 = new Configuration()
+                                    Configuration configuration210 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10021 = configuration10021.buildSessionFactory();
-                                    Session session10021 = null;
+                                    SessionFactory factory210 = configuration210.buildSessionFactory();
+                                    Session session210 = null;
                                     try {
-                                        session10021 = factory10021.getCurrentSession();
-                                        session10021.beginTransaction();
-                                        user1 = session10021.get(Users.class, identificator);
+                                        session210 = factory210.getCurrentSession();
+                                        session210.beginTransaction();
+                                        user1 = session210.get(Users.class, identificator);
 
                                         if (user1.getProductList().isEmpty()) {
                                             System.out.println("Корзина пуста");
@@ -1391,11 +1391,11 @@ public class Test {
                                             }
                                             System.out.println("Итоговая цена  = " + sum);
                                         }
-                                        session10021.getTransaction().commit();
+                                        session210.getTransaction().commit();
 
                                     } finally {
-                                        session10021.close();
-                                        factory10021.close();
+                                        session210.close();
+                                        factory210.close();
                                     }
 
                                     break;
@@ -1415,19 +1415,19 @@ public class Test {
 
                                     Users user2;
 
-                                    Configuration configuration10022 = new Configuration()
+                                    Configuration configuration220 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10022 = configuration10022.buildSessionFactory();
-                                    Session session10022 = null;
+                                    SessionFactory factory220 = configuration220.buildSessionFactory();
+                                    Session session220 = null;
                                     try {
-                                        session10022 = factory10022.getCurrentSession();
-                                        session10022.beginTransaction();
-                                        user2 = session10022.get(Users.class, identificator);
+                                        session220 = factory220.getCurrentSession();
+                                        session220.beginTransaction();
+                                        user2 = session220.get(Users.class, identificator);
 
 
                                         for (Product product : user2.getProductList()) {
@@ -1442,15 +1442,15 @@ public class Test {
                                         }
 
                                         if (v != 0) {
-                                            Product product = session10022.get(Product.class, zz);
+                                            Product product = session220.get(Product.class, zz);
                                             product.getUsersList().remove(user2);
                                         }
 
-                                        session10022.getTransaction().commit();
+                                        session220.getTransaction().commit();
 
                                     } finally {
-                                        session10022.close();
-                                        factory10022.close();
+                                        session220.close();
+                                        factory220.close();
                                     }
                                     // Если товар в корзине есть
                                     if (v != 0) {
@@ -1465,20 +1465,20 @@ public class Test {
                                     int findIdProd;
                                     int cc = 0; //счетчик
 
-                                    Configuration configuration10023 = new Configuration()
+                                    Configuration configuration230 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10023 = configuration10023.buildSessionFactory();
+                                    SessionFactory factory230 = configuration230.buildSessionFactory();
 
-                                    Session session10023 = null;
+                                    Session session230 = null;
 
                                     try {
-                                        session10023 = factory10023.getCurrentSession();
-                                        session10023.beginTransaction();
+                                        session230 = factory230.getCurrentSession();
+                                        session230.beginTransaction();
 
                                         System.out.println("Поиск подходящих товаров по категории и по цене");
 
@@ -1491,7 +1491,7 @@ public class Test {
                                             }
                                             findIdProd = scanner2.nextInt();
 
-                                            List<Category> categoryList1 = session10023.createQuery("from Category").getResultList();
+                                            List<Category> categoryList1 = session230.createQuery("from Category").getResultList();
                                             for (Category cat : categoryList1) {
                                                 if (cat.getId() == findIdProd) {
 
@@ -1510,8 +1510,8 @@ public class Test {
                                         while (!isCategory);
 
                                     } finally {
-                                        session10023.close();
-                                        factory10023.close();
+                                        session230.close();
+                                        factory230.close();
                                     }
 
 
@@ -1534,22 +1534,22 @@ public class Test {
                                     }
                                     Double endPriceProd = scanner2.nextDouble();
 
-                                    Configuration configuration10024 = new Configuration()
+                                    Configuration configuration240 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10024 = configuration10024.buildSessionFactory();
+                                    SessionFactory factory240 = configuration240.buildSessionFactory();
 
-                                    Session session10024 = null;
+                                    Session session240 = null;
                                     try {
-                                        session10024 = factory10024.getCurrentSession();
-                                        session10024.beginTransaction();
+                                        session240 = factory240.getCurrentSession();
+                                        session240.beginTransaction();
                                         List<Product> productSses = new ArrayList<>();
 
-                                        productSses = session10024.createQuery("from Product").getResultList();
+                                        productSses = session240.createQuery("from Product").getResultList();
                                         for (Product prod2 : productSses) {
                                             if ((prod2.getProduct_price() >= startPriceProd) && (prod2.getProduct_price() <= endPriceProd) && (prod2.getCat().id == findIdProd)) {
                                                 cc++;
@@ -1559,11 +1559,11 @@ public class Test {
                                         if (cc == 0) {
                                             System.out.println("Нет товаров, соответствующих указанным условиям");
                                         }
-                                        session10024.getTransaction().commit();
+                                        session240.getTransaction().commit();
 
                                     } finally {
-                                        session10024.close();
-                                        factory10024.close();
+                                        session240.close();
+                                        factory240.close();
                                     }
 
                                     break;
@@ -1572,19 +1572,19 @@ public class Test {
                                     System.out.println("Оформить заказ");
                                     boolean cartnotnull = true; // т.е. корзина не пуста
 
-                                    Configuration configuration100211 = new Configuration()
+                                    Configuration configuration250 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory100211 = configuration100211.buildSessionFactory();
-                                    Session session100211 = null;
+                                    SessionFactory factory250 = configuration250.buildSessionFactory();
+                                    Session session250 = null;
                                     try {
-                                        session100211 = factory100211.getCurrentSession();
-                                        session100211.beginTransaction();
-                                        user1 = session100211.get(Users.class, identificator);
+                                        session250 = factory250.getCurrentSession();
+                                        session250.beginTransaction();
+                                        user1 = session250.get(Users.class, identificator);
 
                                         if (user1.getProductList().isEmpty()) {
                                             cartnotnull = false; // т.е. корзина пуста
@@ -1608,19 +1608,19 @@ public class Test {
 
                                             Users user543;
 
-                                            Configuration configuration10025 = new Configuration()
+                                            Configuration configuration260 = new Configuration()
                                                     .addAnnotatedClass(Product.class)
                                                     .addAnnotatedClass(Category.class)
                                                     .addAnnotatedClass(Users.class)
                                                     .addAnnotatedClass(Order.class)
                                                     .addAnnotatedClass(Status.class);
-                                            SessionFactory factory10025 = configuration10025.buildSessionFactory();
-                                            Session session10025 = null;
+                                            SessionFactory factory260 = configuration260.buildSessionFactory();
+                                            Session session260 = null;
 
                                             try {
-                                                session10025 = factory10025.getCurrentSession();
-                                                session10025.beginTransaction();
-                                                user543 = session10025.get(Users.class, identificator);
+                                                session260 = factory260.getCurrentSession();
+                                                session260.beginTransaction();
+                                                user543 = session260.get(Users.class, identificator);
 
                                                 //Получаем товары из корзины пользователя...
                                                 for (Product product : user543.getProductList()) {
@@ -1633,33 +1633,33 @@ public class Test {
 
                                                 for (Product productorder : productorderList) {
                                                     Order newOrder = new Order(uuid, user543, productorder, current, Status.Оформлен);
-                                                    session10025.persist(newOrder);
+                                                    session260.persist(newOrder);
                                                 }
 
-                                                session10025.getTransaction().commit();
+                                                session260.getTransaction().commit();
 
                                             } finally {
-                                                session10025.close();
-                                                factory10025.close();
+                                                session260.close();
+                                                factory260.close();
                                             }
 
-                                            Configuration configuration10026 = new Configuration()
+                                            Configuration configuration270 = new Configuration()
                                                     .addAnnotatedClass(Product.class)
                                                     .addAnnotatedClass(Category.class)
                                                     .addAnnotatedClass(Users.class)
                                                     .addAnnotatedClass(Order.class)
                                                     .addAnnotatedClass(Status.class);
 
-                                            SessionFactory factory10026 = configuration10026.buildSessionFactory();
+                                            SessionFactory factory270 = configuration270.buildSessionFactory();
 
-                                            Session session10026 = null;
+                                            Session session270 = null;
                                             try {
-                                                session10026 = factory10026.getCurrentSession();
-                                                session10026.beginTransaction();
+                                                session270 = factory270.getCurrentSession();
+                                                session270.beginTransaction();
 
                                                 double price = 0;
                                                 List<Order> orderList = new ArrayList<>();
-                                                orderList = session10026.createQuery("from Order").getResultList();
+                                                orderList = session270.createQuery("from Order").getResultList();
                                                 System.out.println("Информация о заказе:");
                                                 System.out.println("Номер заказа: " + uuid);
 
@@ -1690,39 +1690,39 @@ public class Test {
                                                 price = 0;
 
 
-                                                session10026.getTransaction().commit();
+                                                session270.getTransaction().commit();
 
                                             } finally {
-                                                session10026.close();
-                                                factory10026.close();
+                                                session270.close();
+                                                factory270.close();
                                             }
                                             System.out.println();
                                         }
                                     } finally {
-                                        session100211.close();
-                                        factory100211.close();
+                                        session250.close();
+                                        factory250.close();
                                     }
 
                                     break;
 
                                 case "8":
 
-                                    Configuration configuration10027 = new Configuration()
+                                    Configuration configuration280 = new Configuration()
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Category.class)
                                             .addAnnotatedClass(Users.class)
                                             .addAnnotatedClass(Order.class)
                                             .addAnnotatedClass(Status.class);
 
-                                    SessionFactory factory10027 = configuration10027.buildSessionFactory();
-                                    Session session10027 = null;
+                                    SessionFactory factory280 = configuration280.buildSessionFactory();
+                                    Session session280 = null;
 
                                     try {
-                                        session10027 = factory10027.getCurrentSession();
-                                        session10027.beginTransaction();
+                                        session280 = factory280.getCurrentSession();
+                                        session280.beginTransaction();
                                         double price = 0;
                                         List<Order> orderList = new ArrayList<>();
-                                        orderList = session10027.createQuery("from Order").getResultList();
+                                        orderList = session280.createQuery("from Order").getResultList();
 
                                         System.out.println("Информация о Ваших заказах");
                                         System.out.println();
@@ -1765,10 +1765,10 @@ public class Test {
                                         }
                                         System.out.println("Количество Ваших заказов - " + hashList.size());
 
-                                        session10027.getTransaction().commit();
+                                        session280.getTransaction().commit();
                                     } finally {
-                                        session10027.close();
-                                        factory10027.close();
+                                        session280.close();
+                                        factory280.close();
                                     }
 
                                     System.out.println();
@@ -1805,33 +1805,33 @@ public class Test {
 
         int f = inp2.nextInt();
 
-        Configuration configuration10028 = new Configuration().
+        Configuration configuration290 = new Configuration().
                 addAnnotatedClass(Users.class)
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(Category.class)
                 .addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Status.class);
 
-        SessionFactory factory10028 = configuration10028.buildSessionFactory();
+        SessionFactory factory290 = configuration290.buildSessionFactory();
 
-        Session session10028 = null;
+        Session session290 = null;
         try {
-            session10028 = factory10028.getCurrentSession();
-            session10028.beginTransaction();
+            session290 = factory290.getCurrentSession();
+            session290.beginTransaction();
 
             List<Users> users3 = new ArrayList<>();
 
-            users3 = session10028.createQuery("from Users").getResultList();
+            users3 = session290.createQuery("from Users").getResultList();
             for (Users smenaRoli : users3) {
                 if (smenaRoli.getId() == f) {
-                    Users users31 = session10028.get(Users.class, f);
+                    Users users31 = session290.get(Users.class, f);
 
                     if (users31.getRole().equals("пользователь")) {
                         users31.setRole("администратор");
-                        session10028.getTransaction().commit();
+                        session290.getTransaction().commit();
                     } else if (users31.getRole().equals("администратор")) {
                         users31.setRole("пользователь");
-                        session10028.getTransaction().commit();
+                        session290.getTransaction().commit();
                     }
 
                     System.out.println("Роль пользователя с id - " + f + " изменена. Новая роль пользователя с id " + f + " - " + users31.getRole());
@@ -1841,28 +1841,28 @@ public class Test {
             }
 
         } finally {
-            session10028.close();
-            factory10028.close();
+            session290.close();
+            factory290.close();
         }
         return false;
     }
 
     public static boolean deleteProdArtikul(String code) {
 
-        Configuration configuration10029 = new Configuration().
+        Configuration configuration300 = new Configuration().
                 addAnnotatedClass(Product.class)
                 .addAnnotatedClass(Category.class)
                 .addAnnotatedClass(Users.class)
                 .addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Status.class);
 
-        SessionFactory factory10029 = configuration10029.buildSessionFactory();
+        SessionFactory factory300 = configuration300.buildSessionFactory();
 
-        Session session10029 = null;
+        Session session300 = null;
         try {
 
-            session10029 = factory10029.getCurrentSession();
-            session10029.beginTransaction();
+            session300 = factory300.getCurrentSession();
+            session300.beginTransaction();
             System.out.println("Удаление товара по его артикулу(со списком товаров (который в т.ч. содержит артикул товара) можно ознакомиться, если нажать 5 в меню администратора)");
             System.out.println("Введите артикул товара, который хотите удалить");
 
@@ -1871,14 +1871,14 @@ public class Test {
             int id_;
 
             List<Product> productSssses = new ArrayList<>();
-            productSssses = session10029.createQuery("from Product").getResultList();
+            productSssses = session300.createQuery("from Product").getResultList();
             for (Product prod : productSssses) {
                 if (prod.getCode().equals(artikul)) {
                     id_ = prod.getId();
-                    Product productForDelete = session10029.get(Product.class, id_);
-                    session10029.delete(productForDelete);
+                    Product productForDelete = session300.get(Product.class, id_);
+                    session300.delete(productForDelete);
                     System.out.println("Товар с артикулом " + artikul + " удален");
-                    session10029.getTransaction().commit();
+                    session300.getTransaction().commit();
                     return true;
                 }
             }
@@ -1886,8 +1886,8 @@ public class Test {
             return false;
 
         } finally {
-            session10029.close();
-            factory10029.close();
+            session300.close();
+            factory300.close();
         }
     }
 }
