@@ -1201,7 +1201,6 @@ public class Test {
 
                                     break;
 
-
                                 default:
                                     System.out.println("Введите корректное значение");
                                     break;
@@ -1225,6 +1224,7 @@ public class Test {
                                     "\n6 - для фильтрации товаров по категории и по цене;" +
                                     "\n7 - для оформления заказа;" +
                                     "\n8 - для просмотра списка заказов;" +
+                                    "\n9 - для поиска категории товаров по первым символам наименования категории;" +
                                     "\n0 - для выхода из меню пользователя");
                             z2 = scanner2.nextLine();
                             switch (z2) {
@@ -1460,6 +1460,7 @@ public class Test {
                                     break;
 
                                 case "6":
+                                    Scanner scanner3 = new Scanner(System.in);
                                     boolean isCategory = false;
                                     String nameCategory;
                                     int findIdProd;
@@ -1485,11 +1486,11 @@ public class Test {
                                         do {
                                             System.out.println("Введите id категории товара");
                                             // Проверка на тип int
-                                            while (!scanner2.hasNextInt()) {
-                                                scanner2.next();
+                                            while (!scanner3.hasNextInt()) {
+                                                scanner3.next();
                                                 System.out.println("Вы ввели не целое число (не значение типа int), попробуйте еще раз");
                                             }
-                                            findIdProd = scanner2.nextInt();
+                                            findIdProd = scanner3.nextInt();
 
                                             List<Category> categoryList1 = session230.createQuery("from Category").getResultList();
                                             for (Category cat : categoryList1) {
@@ -1520,19 +1521,19 @@ public class Test {
                                     System.out.println("Введите стартовую цену товара");
 
 
-                                    while (!scanner2.hasNextDouble()) {
-                                        scanner2.next();
+                                    while (!scanner3.hasNextDouble()) {
+                                        scanner3.next();
                                         System.out.println("Вы ввели не значение типа double, попробуйте еще раз");
                                     }
-                                    Double startPriceProd = scanner2.nextDouble();
+                                    Double startPriceProd = scanner3.nextDouble();
 
                                     System.out.println("Введите верхнюю границу цены товара");
 
-                                    while (!scanner2.hasNextDouble()) {
-                                        scanner2.next();
+                                    while (!scanner3.hasNextDouble()) {
+                                        scanner3.next();
                                         System.out.println("Вы ввели не значение типа double, попробуйте еще раз");
                                     }
-                                    Double endPriceProd = scanner2.nextDouble();
+                                    Double endPriceProd = scanner3.nextDouble();
 
                                     Configuration configuration240 = new Configuration()
                                             .addAnnotatedClass(Product.class)
@@ -1775,6 +1776,64 @@ public class Test {
 
                                     break;
 
+                                case "9":
+
+                                    boolean isorderin2 = false;
+                                    int counterin2 = 0;
+
+                                    Configuration configuration281 = new Configuration()
+                                            .addAnnotatedClass(Product.class)
+                                            .addAnnotatedClass(Category.class)
+                                            .addAnnotatedClass(Users.class)
+                                            .addAnnotatedClass(Order.class)
+                                            .addAnnotatedClass(Status.class);
+
+                                    SessionFactory factory281 = configuration281.buildSessionFactory();
+
+                                    Session session281 = null;
+                                    try {
+                                        session281 = factory281.getCurrentSession();
+                                        session281.beginTransaction();
+
+                                        List<Category> categoryListList = new ArrayList<>();
+                                        categoryListList = session281.createQuery("from Category").getResultList();
+
+                                        System.out.println("Введите символы, с которых начинается наименование категории товаров");
+
+                                        String path2 = scanner2.nextLine().toLowerCase();
+
+                                        for (Category category1 : categoryListList) {
+                                            if (category1.getName().toLowerCase().startsWith(path2)) {
+                                                counterin2++;
+                                            }
+                                        }
+
+                                        if (counterin2 == 0) {
+                                            isorderin2 = false;
+                                        } else {
+                                            isorderin2 = true;
+                                            System.out.println("Найдена категория товаров с наименованием, начинающемся на символы - " + path2);
+                                        }
+
+                                        if (isorderin2 == false) {
+                                            System.out.println("Нет категорий товаров с наименованием, ночинающемся на символы " + path2);
+                                        } else {
+                                            for (Category category2 : categoryListList) {
+                                                if (category2.getName().toLowerCase().startsWith(path2)) {
+                                                    System.out.println("Наименование категории - " + category2.getName() +", " + " ID категории - " + category2.getId());
+                                                }
+                                            }
+                                        }
+
+                                        session281.getTransaction().commit();
+
+                                    } finally {
+                                        session281.close();
+                                        factory281.close();
+                                    }
+                                    System.out.println();
+
+                                    break;
 
                                 case "0":
                                     break;
