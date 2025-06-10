@@ -508,12 +508,14 @@ public class Test {
                                     SessionFactory factory70 = configuration70.buildSessionFactory();
 
                                     Session session70 = null;
+                                    //String r;
                                     try {
                                         session70 = factory70.getCurrentSession();
                                         session70.beginTransaction();
                                         List<Category> categoryList = new ArrayList<>();
 
                                         categoryList = session70.createQuery("from Category").getResultList();
+
                                         for (Category category : categoryList) {
                                             System.out.println(category);
                                         }
@@ -541,7 +543,7 @@ public class Test {
                                         do {
                                             nonuniclogin = false;
 
-                                            while (!category.setName(scanner2.nextLine()));
+                                            while (!category.setName(scanner2.nextLine())) ;
 
                                             Configuration configuration80 = new Configuration()
                                                     .addAnnotatedClass(Users.class)
@@ -725,7 +727,7 @@ public class Test {
                                             System.out.println("_______________________________________________________________________________");
 //__________________________________________________________________________________________________________________________________________________________________________________
 
-                                            Scanner sn  = new Scanner(System.in);
+                                            Scanner sn = new Scanner(System.in);
                                             String isNull;
                                             do {
                                                 do {
@@ -1142,7 +1144,7 @@ public class Test {
                                                 if (numbstat.equals("1") || numbstat.equals("2") || numbstat.equals("3") || numbstat.equals("4")) {
                                                     znach = true;
                                                 }
-                                                if (znach == false){
+                                                if (znach == false) {
                                                     System.out.println("Введите корректное значение");
                                                 }
                                             }
@@ -1208,14 +1210,13 @@ public class Test {
                         do {
                             System.out.println("Введите:" +
                                     "\n1 - для просмотра категорий товаров;" +
-                                    "\n2 - для поиска категории товаров по первым символам наименования категории;" +
-                                    "\n3 - для просмотра списка товаров;" +
-                                    "\n4 - для фильтрации товаров по категории и по цене;" +
-                                    "\n5 - для добавления товаров в корзину; " +
-                                    "\n6 - для просмотра списка товаров в корзине;" +
-                                    "\n7 - для удаления товара из корзины;" +
-                                    "\n8 - для оформления заказа;" +
-                                    "\n9 - для просмотра списка заказов;" +
+                                    "\n2 - для просмотра списка товаров;" +
+                                    "\n3 - для фильтрации товаров по категории и по цене;" +
+                                    "\n4 - для добавления товаров в корзину; " +
+                                    "\n5 - для просмотра списка товаров в корзине;" +
+                                    "\n6 - для удаления товара из корзины;" +
+                                    "\n7 - для оформления заказа;" +
+                                    "\n8 - для просмотра списка заказов;" +
                                     "\n0 - для выхода из меню пользователя");
                             z2 = scanner2.nextLine();
                             switch (z2) {
@@ -1238,18 +1239,81 @@ public class Test {
                                         List<Category> categoryList = new ArrayList<>();
 
                                         categoryList = session180.createQuery("from Category").getResultList();
-                                        for (Category category : categoryList) {
-                                            System.out.println(category);
+
+                                        System.out.println("Введите" +
+                                                "\n1 - для просмотра списка категорий, отсортированных по ID;" +
+                                                "\n2 - для просмотра списка категорий, отсортированных по алфавиту" +
+                                                "\n3 - для поиска категории товаров по первым символам наименования категории"
+                                        );
+                                        Scanner scn = new Scanner(System.in);
+                                        String r = scanner2.nextLine();
+                                        switch (r) {
+                                            case "1":
+                                                categoryList.sort((o1, o2) -> {
+                                                    return (int) (o1.getId() - o2.getId()); //Сортировка по id категории
+                                                });
+                                                for (Category category : categoryList) {
+                                                    System.out.println(category);
+                                                }
+                                                break;
+
+                                            case "2":
+                                                categoryList.sort((o1, o2) -> {
+                                                    return o1.getName().compareTo(o2.getName());   //Сортировка по алфавиту
+                                                });
+                                                for (Category category : categoryList) {
+                                                    System.out.println(category);
+                                                }
+                                                break;
+
+                                            case "3":
+                                                boolean isorderin3 = false;
+                                                int counterin3 = 0;
+                                                System.out.println("Введите символы, с которых начинается наименование категории товаров");
+
+                                                String path2 = scanner2.nextLine().toLowerCase();
+
+                                                for (Category category1 : categoryList) {
+                                                    if (category1.getName().toLowerCase().startsWith(path2)) {
+                                                        counterin3++;
+                                                    }
+                                                }
+
+                                                if (counterin3 == 0) {
+                                                    isorderin3 = false;
+                                                } else {
+                                                    isorderin3 = true;
+                                                    System.out.println("Найдена категория товаров с наименованием, начинающемся на символы - " + path2);
+                                                }
+
+                                                if (isorderin3 == false) {
+                                                    System.out.println("Нет категорий товаров с наименованием, ночинающемся на символы " + path2);
+                                                } else {
+                                                    for (Category category2 : categoryList) {
+                                                        if (category2.getName().toLowerCase().startsWith(path2)) {
+                                                            System.out.println("Наименование категории - " + category2.getName() + ", " + " ID категории - " + category2.getId());
+                                                        }
+                                                    }
+                                                }
+
+                                                break;
+
+                                            default:
+                                                System.out.println("Вы ввели некорректное значение");
+                                                break;
                                         }
+
                                         session180.getTransaction().commit();
 
-                                        System.out.println("Выше выведена информация о всех категориях товаров из базы данных");
+                                        //System.out.println("Выше выведена информация о всех категориях товаров из базы данных");
                                     } finally {
                                         session180.close();
                                         factory180.close();
                                     }
 
                                     break;
+
+                                    /*
 
                                 case "2"://для поиска категории товаров по первым символам наименования категории
 
@@ -1309,8 +1373,8 @@ public class Test {
                                     System.out.println();
 
                                     break;
-
-                                case "3"://информация о всех товарах из базы данных(для просмотра списка товаров)
+                                */
+                                case "2"://просмотр списка товаров
 
                                     Configuration configuration190 = new Configuration()
                                             .addAnnotatedClass(Product.class)
@@ -1340,7 +1404,7 @@ public class Test {
                                     }
                                     break;
 
-                                case "4"://для фильтрации товаров по категории и по цене
+                                case "3"://для фильтрации товаров по категории и по цене
                                     Scanner scanner3 = new Scanner(System.in);
                                     boolean isCategory = false;
                                     String nameCategory;
@@ -1449,7 +1513,7 @@ public class Test {
                                     break;
 
 
-                                case "5":
+                                case "4":
 
                                     System.out.println("Добавление товара в корзину");
                                     String tovarname = null;
@@ -1512,7 +1576,7 @@ public class Test {
 
                                     break;
 
-                                case "6"://для просмотра списка товаров в корзине
+                                case "5"://для просмотра списка товаров в корзине
                                     System.out.println("Просмотр списка товаров в корзине");
 
                                     double sum = 0;
@@ -1553,7 +1617,7 @@ public class Test {
 
                                     break;
 
-                                case "7"://для удаления товара из корзины
+                                case "6"://для удаления товара из корзины
                                     System.out.println("Удаление товара из корзины");
 
                                     String tovarname2 = null;
@@ -1612,7 +1676,7 @@ public class Test {
                                     break;
 
 
-                                case "8"://для оформления заказа
+                                case "7"://для оформления заказа
                                     System.out.println("Оформить заказ");
                                     boolean cartnotnull = true; // т.е. корзина не пуста
 
@@ -1749,7 +1813,7 @@ public class Test {
 
                                     break;
 
-                                case "9":// для просмотра списка заказов
+                                case "8":// для просмотра списка заказов
 
                                     Configuration configuration280 = new Configuration()
                                             .addAnnotatedClass(Product.class)
@@ -1912,7 +1976,7 @@ public class Test {
 
             Scanner inp3 = new Scanner(System.in);
             String artikul = inp3.nextLine();
-           // int id_;
+            // int id_;
 
             List<Product> productList = new ArrayList<>();
             productList = session300.createQuery("from Product").getResultList();
