@@ -470,7 +470,7 @@ public class Test {
 
 
     public static boolean rabota_autoriz(List<Users> users) {
-        Scanner scanner2 = new Scanner(System.in);  // input_id_product - переименовать на более благозвучное
+        Scanner scanner2 = new Scanner(System.in);
 
         String z;
         for (Users us3 : users) {
@@ -508,7 +508,7 @@ public class Test {
                                     SessionFactory factory70 = configuration70.buildSessionFactory();
 
                                     Session session70 = null;
-                                    //String r;
+
                                     try {
                                         session70 = factory70.getCurrentSession();
                                         session70.beginTransaction();
@@ -845,7 +845,7 @@ public class Test {
                                 case "4":
 
                                     Product product1000 = new Product();
-                                    //List<Product> products = new ArrayList<>();
+
                                     if (!deleteProdArtikul(product1000.getCode())) {
                                         System.out.println("Товара с таким артикулом нет в списке товаров");
                                     }
@@ -941,10 +941,17 @@ public class Test {
                                         List<Order> orderList = new ArrayList<>();
                                         orderList = session150.createQuery("from Order").getResultList();
 
+                                        orderList.sort(new Comparator<Order>() {
+                                            @Override
+                                            public int compare(Order o1, Order o2) {
+                                                return (o1.getdAndT().compareTo(o2.getdAndT())); //Сортировка по дате заказа
+                                            }
+                                        });
+
                                         System.out.println("ИНФОРМАЦИЯ ОБО ВСЕХ ЗАКАЗАХ:");
                                         System.out.println();
                                         // Лист, чтобы разместить номера заказов без повтора
-                                        HashSet<String> hashList = new HashSet<>();
+                                        LinkedHashSet<String> hashList = new LinkedHashSet<>();
                                         // Получаю номера всех заказов
                                         for (Order o : orderList) {
                                             // Заполняю поэлементно Hash лист
@@ -1830,12 +1837,20 @@ public class Test {
                                         session280.beginTransaction();
                                         double price = 0;
                                         List<Order> orderList = new ArrayList<>();
+
                                         orderList = session280.createQuery("from Order").getResultList();
+
+                                        orderList.sort(new Comparator<Order>() {
+                                            @Override
+                                            public int compare(Order o1, Order o2) {
+                                                return (o1.getdAndT().compareTo(o2.getdAndT())); // Сортировка по дате заказа
+                                            }
+                                        });
 
                                         System.out.println("Информация о Ваших заказах");
                                         System.out.println();
 
-                                        HashSet<String> hashList = new HashSet<>();
+                                        LinkedHashSet<String> hashList = new LinkedHashSet<>();
 
                                         for (Order order : orderList) {
                                             if (order.getUser().getId() == identificator) {
@@ -1844,6 +1859,7 @@ public class Test {
                                         }
 
                                         for (String hl : hashList) {
+
                                             for (Order order : orderList) {
                                                 if (hl.equals(order.getNumber())) {
                                                     System.out.println("Номер заказа: " + order.getNumber());
