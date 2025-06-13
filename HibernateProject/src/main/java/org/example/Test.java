@@ -516,12 +516,13 @@ public class Test {
 
                                         categoryList = session70.createQuery("from Category").getResultList();
 
+                                        System.out.println("Список категорий товаров:");
                                         for (Category category : categoryList) {
-                                            System.out.println(category);
+
+                                            System.out.printf("id=%2d, категория- %-1s; \n", category.getId(), category.getName());
                                         }
                                         session70.getTransaction().commit();
 
-                                        System.out.println("Выше выведена информация о всех категориях товаров из базы данных");
                                     } finally {
                                         session70.close();
                                         factory70.close();
@@ -870,12 +871,13 @@ public class Test {
                                         List<Product> productSses = new ArrayList<>();
 
                                         productSses = session130.createQuery("from Product").getResultList();
+                                        System.out.println("Информация о всех товарах из базы данных:");
                                         for (Product prod2 : productSses) {
-                                            System.out.println(prod2);
+                                            //System.out.println(prod2);
+                                            System.out.printf("id=%2d| \t артикул- %-1s|\t товар- %-12s| \t цена- %,.1f; \n", prod2.getId(), prod2.getCode(), prod2.getProduct_name(), prod2.getProduct_price());//!!!!!!!!!!!!!!!!
                                         }
                                         session130.getTransaction().commit();
 
-                                        System.out.println("Выше выведена информация о всех товарах из базы данных");
                                     } finally {
                                         session130.close();
                                         factory130.close();
@@ -896,18 +898,18 @@ public class Test {
                                     SessionFactory factory140 = configuration140.buildSessionFactory();
 
                                     Session session140 = null;
+                                    System.out.println("Информация о всех зарегистрированных пользователях из базы данных:");
                                     try {
                                         session140 = factory140.getCurrentSession();
                                         session140.beginTransaction();
 
                                         List<Users> us = new ArrayList<>();
                                         us = session140.createQuery("from Users").getResultList();
-                                        for (Users us32 : us) {
-                                            System.out.println(us32);
+                                        for (Users u : us) {
+                                            System.out.printf("id=%2d| \t Фамилия-товар- %-18s| Имя- %-18s| Отчество- %-22s| Email-товар- %-18s| № телефона- %-18s| Роль- %-18s| Логин- %-18s| Пароль- %s \n", u.getId(), u.getSurname(), u.getName(), u.getPatronymic(), u.getEmail(), u.getTelephone_number(), u.getRole(), u.getLogin(), u.getPassword());
                                         }
                                         session140.getTransaction().commit();
 
-                                        System.out.println("Выше выведена информация о всех зарегистрированных пользователях из базы данных");
                                     } finally {
                                         session140.close();
                                         factory140.close();

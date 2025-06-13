@@ -61,11 +61,15 @@ public class Category {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+
+    /*{
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
-
+    }*/ {
+        return "id = " + id +
+                ", наименование = " + name;
     }
 }
