@@ -943,12 +943,37 @@ public class Test {
                                         List<Order> orderList = new ArrayList<>();
                                         orderList = session150.createQuery("from Order").getResultList();
 
-                                        orderList.sort(new Comparator<Order>() {
-                                            @Override
-                                            public int compare(Order o1, Order o2) {
-                                                return (o1.getdAndT().compareTo(o2.getdAndT())); //Сортировка по дате заказа
-                                            }
-                                        });
+                                        System.out.println("Введите" +
+                                                "\n1 - для сортировки заказов по дате заказа;" +
+                                                "\n2 - для сортировки заказов по сначала по ID пользователя, затем по дате заказа"
+                                        );
+                                        //Scanner s = new Scanner(System.in);
+                                        String с = scanner2.nextLine();
+
+                                        switch (с) {
+                                            case "1":
+                                                orderList.sort(new Comparator<Order>() {
+                                                    @Override
+                                                    public int compare(Order o1, Order o2) {
+                                                        return (o1.getdAndT().compareTo(o2.getdAndT())); //Сортировка по дате заказа
+                                                    }
+                                                });
+                                                break;
+
+                                            case "2":
+                                                orderList.sort(new Comparator<Order>() {
+                                                    @Override
+                                                    public int compare(Order o1, Order o2) {
+                                                        int res = o1.getUser().getId() - o2.getUser().getId(); // Сортировка сначала по ID пользователя, затем по дате создания заказа
+                                                        if (res == 0) {
+                                                            res = o1.getdAndT().compareTo(o2.getdAndT());
+                                                        }
+                                                        return res;
+                                                    }
+                                                });
+                                                break;
+                                        }
+
 
                                         System.out.println("ИНФОРМАЦИЯ ОБО ВСЕХ ЗАКАЗАХ:");
                                         System.out.println();
@@ -991,9 +1016,12 @@ public class Test {
 
                                         session150.getTransaction().commit();
 
+
                                     } finally {
                                         session150.close();
                                         factory150.close();
+
+
                                     }
                                     System.out.println();
 
@@ -1254,21 +1282,24 @@ public class Test {
                                                 "\n2 - для просмотра списка категорий, отсортированных по алфавиту" +
                                                 "\n3 - для поиска категории товаров по первым символам наименования категории"
                                         );
-                                        Scanner scn = new Scanner(System.in);
+                                        //Scanner scn = new Scanner(System.in);
                                         String r = scanner2.nextLine();
+
                                         switch (r) {
                                             case "1":
                                                 categoryList.sort((o1, o2) -> {
                                                     return (int) (o1.getId() - o2.getId()); //Сортировка по id категории
                                                 });
+
                                                 for (Category category : categoryList) {
                                                     System.out.println(category);
                                                 }
                                                 break;
 
                                             case "2":
+                                                //Сортировка по алфавиту
                                                 categoryList.sort((o1, o2) -> {
-                                                    return o1.getName().compareTo(o2.getName());   //Сортировка по алфавиту
+                                                    return o1.getName().compareTo(o2.getName());
                                                 });
                                                 for (Category category : categoryList) {
                                                     System.out.println(category);
