@@ -1000,7 +1000,8 @@ public class Test {
                                                     price = 0;
                                                     for (Order order1 : orderList) {
                                                         if (order1.getNumber().equals(hl)) {
-                                                            System.out.println("id товара - " + order1.getProduct().getId() + " , артикул товара - " + order1.getProduct().getCode() + ", наименование товара - " + order1.getProduct().getProduct_name() + ", цена товара - " + order1.getProduct().getProduct_price());
+                                                            //System.out.println("id товара - " + order1.getProduct().getId() + " , артикул товара - " + order1.getProduct().getCode() + ", наименование товара - " + order1.getProduct().getProduct_name() + ", цена товара - " + order1.getProduct().getProduct_price());
+                                                            System.out.printf("id=%2d| \t артикул- %-1s|\t товар- %-12s| \t цена- %,.1f; \n", order1.getProduct().getId(), order1.getProduct().getCode(), order1.getProduct().getProduct_name(), order1.getProduct().getProduct_price());
                                                             price = order1.getProduct().getProduct_price() + price;
                                                         }
                                                     }
@@ -1292,17 +1293,17 @@ public class Test {
                                                 });
 
                                                 for (Category category : categoryList) {
-                                                    System.out.println(category);
+                                                    //System.out.println(category);
+                                                    System.out.printf("id=%2d, категория- %-1s; \n", category.getId(), category.getName());
                                                 }
                                                 break;
 
                                             case "2":
                                                 //Сортировка по алфавиту
-                                                categoryList.sort((o1, o2) -> {
-                                                    return o1.getName().compareTo(o2.getName());
-                                                });
+                                                categoryList.sort(Comparator.comparing(Category::getName));
                                                 for (Category category : categoryList) {
-                                                    System.out.println(category);
+                                                    //System.out.println(category);
+                                                    System.out.printf("id=%2d, категория- %-1s; \n", category.getId(), category.getName());
                                                 }
                                                 break;
 
@@ -1323,7 +1324,7 @@ public class Test {
                                                     isorderin3 = false;
                                                 } else {
                                                     isorderin3 = true;
-                                                    System.out.println("Найдена категория товаров с наименованием, начинающемся на символы - " + path2);
+                                                    //System.out.println("Найдена категория товаров с наименованием, начинающемся на символы - " + path2);
                                                 }
 
                                                 if (isorderin3 == false) {
@@ -1331,7 +1332,8 @@ public class Test {
                                                 } else {
                                                     for (Category category2 : categoryList) {
                                                         if (category2.getName().toLowerCase().startsWith(path2)) {
-                                                            System.out.println("Наименование категории - " + category2.getName() + ", " + " ID категории - " + category2.getId());
+                                                            //System.out.println("Наименование категории - " + category2.getName() + ", " + " ID категории - " + category2.getId());
+                                                            System.out.printf("id=%2d, категория- %-1s; \n", category2.getId(), category2.getName());
                                                         }
                                                     }
                                                 }
@@ -1353,67 +1355,6 @@ public class Test {
 
                                     break;
 
-                                    /*
-
-                                case "2"://для поиска категории товаров по первым символам наименования категории
-
-                                    boolean isorderin2 = false;
-                                    int counterin2 = 0;
-
-                                    Configuration configuration281 = new Configuration()
-                                            .addAnnotatedClass(Product.class)
-                                            .addAnnotatedClass(Category.class)
-                                            .addAnnotatedClass(Users.class)
-                                            .addAnnotatedClass(Order.class)
-                                            .addAnnotatedClass(Status.class);
-
-                                    SessionFactory factory281 = configuration281.buildSessionFactory();
-
-                                    Session session281 = null;
-                                    try {
-                                        session281 = factory281.getCurrentSession();
-                                        session281.beginTransaction();
-
-                                        List<Category> categoryListList = new ArrayList<>();
-                                        categoryListList = session281.createQuery("from Category").getResultList();
-
-                                        System.out.println("Введите символы, с которых начинается наименование категории товаров");
-
-                                        String path2 = scanner2.nextLine().toLowerCase();
-
-                                        for (Category category1 : categoryListList) {
-                                            if (category1.getName().toLowerCase().startsWith(path2)) {
-                                                counterin2++;
-                                            }
-                                        }
-
-                                        if (counterin2 == 0) {
-                                            isorderin2 = false;
-                                        } else {
-                                            isorderin2 = true;
-                                            System.out.println("Найдена категория товаров с наименованием, начинающемся на символы - " + path2);
-                                        }
-
-                                        if (isorderin2 == false) {
-                                            System.out.println("Нет категорий товаров с наименованием, ночинающемся на символы " + path2);
-                                        } else {
-                                            for (Category category2 : categoryListList) {
-                                                if (category2.getName().toLowerCase().startsWith(path2)) {
-                                                    System.out.println("Наименование категории - " + category2.getName() + ", " + " ID категории - " + category2.getId());
-                                                }
-                                            }
-                                        }
-
-                                        session281.getTransaction().commit();
-
-                                    } finally {
-                                        session281.close();
-                                        factory281.close();
-                                    }
-                                    System.out.println();
-
-                                    break;
-                                */
                                 case "2"://просмотр списка товаров
 
                                     Configuration configuration190 = new Configuration()
@@ -1432,12 +1373,32 @@ public class Test {
                                         List<Product> productSses = new ArrayList<>();
 
                                         productSses = session190.createQuery("from Product").getResultList();
+
+
+                                        System.out.println("Введите" +
+                                                "\n1 - для просмотра списка товаров, отсортированного по ID;" +
+                                                "\n2 - для просмотра списка товаров, отсортированного по алфавиту"
+                                        );
+                                        String w = scanner2.nextLine();
+                                        switch (w) {
+                                            case "1":
+                                                productSses.sort(Comparator.comparing(Product::getId)); //Сортировка товаров по ID
+                                                System.out.println("Cписок товаров, отсортированный по ID:");
+                                                break;
+                                            case "2":
+                                                productSses.sort(Comparator.comparing(Product::getId)); //Сортировка товаров по алфавиту
+                                                System.out.println("Cписок товаров, отсортированный по алфавиту:");
+                                                break;
+                                        }
+
                                         for (Product prod2 : productSses) {
-                                            System.out.println(prod2);
+                                            //System.out.println(prod2);
+                                            System.out.printf("id=%2d| \t артикул- %-1s|\t товар- %-12s| \t цена- %,.1f; \n", prod2.getId(), prod2.getCode(), prod2.getProduct_name(), prod2.getProduct_price());
                                         }
                                         session190.getTransaction().commit();
 
-                                        System.out.println("Выше выведена информация о всех товарах из базы данных");
+                                        //System.out.println("Выше выведена информация о всех товарах из базы данных");
+
                                     } finally {
                                         session190.close();
                                         factory190.close();
@@ -1537,7 +1498,8 @@ public class Test {
                                         for (Product prod2 : productSses) {
                                             if ((prod2.getProduct_price() >= startPriceProd) && (prod2.getProduct_price() <= endPriceProd) && (prod2.getCat().id == findIdProd)) {
                                                 cc++;
-                                                System.out.println(prod2);
+                                                //System.out.println(prod2);
+                                                System.out.printf("id=%2d| \t артикул- %-1s|\t товар- %-12s| \t цена- %,.1f; \n", prod2.getId(), prod2.getCode(), prod2.getProduct_name(), prod2.getProduct_price());
                                             }
                                         }
                                         if (cc == 0) {
@@ -1640,11 +1602,37 @@ public class Test {
                                             System.out.println("Корзина пуста");
                                         } else {
 
-                                            System.out.println("У Вас в корзине лежат следующие товары:");
+                                            System.out.println("Введите:" +
+                                                    "\n1 - для просмотра списка товаров в корзине, где названия товаров отсортированы по алфавиту;" +
+                                                    "\n2 - для просмотра списка товаровв корзине, где товары отсортированы по цене от наибольшей к наименьшей"
+                                            );
+                                            String j = scanner2.nextLine();
+                                            switch (j) {
+                                                case "1":
+                                                    user1.getProductList().sort(new Comparator<Product>() {
+                                                        @Override
+                                                        public int compare(Product o1, Product o2) {
+                                                            return (o1.getProduct_name().compareTo(o2.getProduct_name()));//сортировка по названию товара по алфавиту
+
+                                                        }
+                                                    });
+                                                    System.out.println("У Вас в корзине лежат следующие товары (cортировка по названию товара по алфавиту");
+                                                    break;
+                                                case "2":
+                                                    user1.getProductList().sort(new Comparator<Product>() {
+                                                        @Override
+                                                        public int compare(Product o1, Product o2) {
+                                                            return (int) (o2.getProduct_price() - o1.getProduct_price());//сортировка по цене товаров от наибольшего значения к наименьшему
+                                                        }
+                                                    });
+                                                    System.out.println("У Вас в корзине лежат следующие товары (cортировка по цене товаров от наибольшего к наименьшему)");
+                                                    break;
+                                            }
 
                                             for (Product product : user1.getProductList()) {
                                                 sum = sum + product.getProduct_price();
-                                                System.out.println(product);
+                                                //System.out.println(product);
+                                                System.out.printf("id=%2d| \t артикул- %-1s|\t товар- %-12s| \t цена- %,.1f; \n", product.getId(), product.getCode(), product.getProduct_name(), product.getProduct_price());
                                             }
                                             System.out.println("Итоговая цена  = " + sum);
                                         }
@@ -1908,7 +1896,8 @@ public class Test {
 
                                                     for (Order order1 : orderList) {
                                                         if (order1.getNumber().equals(hl)) {
-                                                            System.out.println("id товара - " + order1.getProduct().getId() + " , артикул товара - " + order1.getProduct().getCode() + ", наименование товара - " + order1.getProduct().getProduct_name() + ", цена товара - " + order1.getProduct().getProduct_price());
+                                                            //System.out.println("id товара - " + order1.getProduct().getId() + " , артикул товара - " + order1.getProduct().getCode() + ", наименование товара - " + order1.getProduct().getProduct_name() + ", цена товара - " + order1.getProduct().getProduct_price());
+                                                            System.out.printf("id=%2d| \t артикул- %-1s|\t товар- %-12s| \t цена- %,.1f; \n", order1.getProduct().getId(), order1.getProduct().getCode(), order1.getProduct().getProduct_name(), order1.getProduct().getProduct_price());
                                                             price = order1.getProduct().getProduct_price() + price;
                                                         }
                                                     }
