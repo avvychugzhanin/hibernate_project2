@@ -906,7 +906,7 @@ public class Test {
                                         List<Users> us = new ArrayList<>();
                                         us = session140.createQuery("from Users").getResultList();
                                         for (Users u : us) {
-                                            System.out.printf("id=%2d| \t Фамилия-товар- %-18s| Имя- %-18s| Отчество- %-22s| Email-товар- %-18s| № телефона- %-18s| Роль- %-18s| Логин- %-18s| Пароль- %s \n", u.getId(), u.getSurname(), u.getName(), u.getPatronymic(), u.getEmail(), u.getTelephone_number(), u.getRole(), u.getLogin(), u.getPassword());
+                                            System.out.printf("id=%2d| \t Фамилия- %-18s| Имя- %-18s| Отчество- %-22s| Email-товар- %-18s| № телефона- %-18s| Роль- %-18s| Логин- %-18s| Пароль- %s \n", u.getId(), u.getSurname(), u.getName(), u.getPatronymic(), u.getEmail(), u.getTelephone_number(), u.getRole(), u.getLogin(), u.getPassword());
                                         }
                                         session140.getTransaction().commit();
 
@@ -1093,7 +1093,8 @@ public class Test {
                                                         price = 0;
                                                         for (Order order1 : orderList) {
                                                             if (order1.getNumber().equals(hl)) {
-                                                                System.out.println("id товара - " + order1.getProduct().getId() + " , артикул товара - " + order1.getProduct().getCode() + ", наименование товара - " + order1.getProduct().getProduct_name() + ", цена товара - " + order1.getProduct().getProduct_price());
+                                                                //System.out.println("id товара - " + order1.getProduct().getId() + " , артикул товара - " + order1.getProduct().getCode() + ", наименование товара - " + order1.getProduct().getProduct_name() + ", цена товара - " + order1.getProduct().getProduct_price());
+                                                                System.out.printf("id=%2d| \t артикул- %-1s|\t товар- %-12s| \t цена- %,.1f; \n", order1.getProduct().getId(), order1.getProduct().getCode(), order1.getProduct().getProduct_name(), order1.getProduct().getProduct_price());
                                                                 price = order1.getProduct().getProduct_price() + price;
                                                             }
                                                         }
