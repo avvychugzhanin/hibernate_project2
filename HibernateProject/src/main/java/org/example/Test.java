@@ -657,9 +657,10 @@ public class Test {
                                                 int value;
 
                                                 do {
-                                                    boolean isTrue = false;
+                                                    boolean isOneInCollection;
 
                                                     do {
+                                                        isOneInCollection = false; // "заноляем или нейтрализуем" значение (в случае повтора цикла)
                                                         System.out.println("Введите id категории товара");
 
                                                         while (!catego.hasNextInt()) { // проверка на тип int
@@ -672,22 +673,19 @@ public class Test {
 
                                                         for (Category cat : categories) {
                                                             if (cat.getId() == value) {
-
-                                                                isTrue = true;
-                                                            }
-                                                            if (isTrue) {
-
                                                                 categor = cat.getName();
-
+                                                                isOneInCollection = true;
                                                                 break;
                                                             }
                                                         }
-                                                        if (isTrue == false) {
+
+                                                        if (isOneInCollection == false) {
                                                             System.out.println("Отсутствует категория товара с указанным Вами id");
                                                         }
                                                     }
 
-                                                    while (!isTrue);
+                                                    while (!isOneInCollection);
+
                                                     category1 = session110.get(Category.class, value);
                                                     System.out.println("Вы ввели значение id = " + value + " ,что соответствует категории - " + categor); // вывод текста если введенное значение соответствует true
 
@@ -756,10 +754,10 @@ public class Test {
                                             Scanner inputArticul = new Scanner(System.in);
 
                                             do {
-                                                boolean isUnic = false;
+                                                boolean isOneInCollection;
 
                                                 do {
-                                                    int count = 0;
+                                                    isOneInCollection = false; // "заноляем или нейтрализуем" значение (в случае повтора цикла)
                                                     Configuration configuration120 = new Configuration()
                                                             .addAnnotatedClass(Users.class)
                                                             .addAnnotatedClass(Product.class)
@@ -785,16 +783,13 @@ public class Test {
                                                         for (Product p : productList) {
 
                                                             if (p.getCode().equals(product.getCode())) {
-                                                                count++;
+                                                                System.out.println("Товар с указанным артикулом уже создан. Необходимо ввести другое значение артикула. ");
+                                                                isOneInCollection = true;
+                                                                break;
                                                             }
                                                         }
-                                                        if (count == 0) {
-                                                            isUnic = true;
-                                                        }
 
-                                                        if (isUnic == false) {
-                                                            System.out.println("Товар с указанным артикулом уже создан. Необходимо ввести другое значение артикула. ");
-                                                        } else {
+                                                        if (!isOneInCollection) {
                                                             System.out.println("Вы ввели уникальное значение артикула");
                                                         }
                                                         session120.getTransaction().commit();
@@ -805,7 +800,7 @@ public class Test {
                                                     }
                                                 }
 
-                                                while (!isUnic);
+                                                while (isOneInCollection);
                                                 System.out.println("Вы ввели " + product.getCode());
                                                 System.out.println("Если значение введено ошибочно (если необходимо откорректировать значение) - введите 0, если все верно - введите любое значение, отличное от 0");
 
