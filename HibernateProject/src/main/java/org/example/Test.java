@@ -155,6 +155,7 @@ public class Test {
                                             if (us3.getEmail().equals(user.getEmail())) {
                                                 nonunicemail = true;
                                                 System.out.println("Пользователь с таким email уже добавлен. Введите другое значение email ");
+                                                break;
                                             }
                                         }
                                         session30.getTransaction().commit();
@@ -214,6 +215,7 @@ public class Test {
                                             if (us3.getTelephone_number().equals(user.getTelephone_number())) {
                                                 nonunic_telephone_number = true;
                                                 System.out.println("Пользователь с таким номером телефона уже зарегистрирован. Введите другое значение номера телефона ");
+                                                break;
                                             }
                                         }
                                         session40.getTransaction().commit();
@@ -278,6 +280,7 @@ public class Test {
                                             if (us3.getLogin().equals(user.getLogin())) {
                                                 nonuniclogin = true;
                                                 System.out.println("Пользователь с таким логином уже добавлен. Введите другое значение логина");
+                                                break;
                                             }
                                         }
                                         session50.getTransaction().commit();
