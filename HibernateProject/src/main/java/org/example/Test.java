@@ -1176,9 +1176,9 @@ public class Test {
                                             System.out.print("Это заказ с номером " + teknumber);
                                             System.out.println(" и статусом - " + tekstatus);
                                             do {
-                                                System.out.println("Для изменения текущего статуса заказа введите кодовое значение нового статуса  (1 - принят, 2 - оформлен, 3 - ожидает или 4 - получен), на который будет изменен текущий статус:");
+                                                System.out.println("Для изменения текущего статуса заказа введите кодовое значение нового статуса  (1 - В обработке, 2 - В сборке, 3 - В доставке, 4 - Ожидает в пункте выдачи, 5 - Получен), на который будет изменен текущий статус:");
                                                 numbstat = scanner2.nextLine();
-                                                if (numbstat.equals("1") || numbstat.equals("2") || numbstat.equals("3") || numbstat.equals("4")) {
+                                                if (numbstat.equals("1") || numbstat.equals("2") || numbstat.equals("3") || numbstat.equals("4") || numbstat.equals("5")) {
                                                     znach = true;
                                                 }
                                                 if (znach == false) {
@@ -1188,12 +1188,14 @@ public class Test {
                                             while (znach == false);
 
                                             if (numbstat.equals("1")) {
-                                                status = Status.Принят;
+                                                status = Status.В_обработке;
                                             } else if (numbstat.equals("2")) {
-                                                status = Status.Оформлен;
+                                                status = Status.В_сборке;
                                             } else if (numbstat.equals("3")) {
-                                                status = Status.Ожидает;
+                                                status = Status.В_доставке;
                                             } else if (numbstat.equals("4")) {
+                                                status = Status.Ожидает_в_пункте_выдачи;
+                                            }else if (numbstat.equals("5")) {
                                                 status = Status.Получен;
                                             }
 
@@ -1767,7 +1769,7 @@ public class Test {
                                                 }
 
                                                 for (Product productorder : productorderList) {
-                                                    Order newOrder = new Order(uuid, user543, productorder, current, Status.Оформлен);
+                                                    Order newOrder = new Order(uuid, user543, productorder, current, Status.В_обработке);
                                                     session260.persist(newOrder);
                                                 }
 
